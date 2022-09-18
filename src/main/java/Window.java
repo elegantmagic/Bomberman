@@ -35,16 +35,19 @@ public class Window extends JPanel implements Runnable {
         }
     }
 
-    BufferedImage image, wall, bomber, all, block;
+    BufferedImage image, wall, all, block; // bomber
+	private Bomber br;	
 
     public void start() {
         try {
             image = new BufferedImage(31 * 3 * 16, 13 * 3 * 16, BufferedImage.TYPE_INT_RGB);
             all = ImageIO.read(Objects.requireNonNull(getClass().getResource("/image/img.png")));
             wall = all.getSubimage(4 * 16, 3 * 16, 16, 16);
-            bomber = all.getSubimage(4 * 16, 0, 16, 16);
+            // bomber = all.getSubimage(4 * 16, 0, 16, 16);
+			br = new Bomber();
             block = all.getSubimage(3 * 16, 3 * 16, 16, 16);
 
+			Global.framebuffer = image;
             scene = new int[][]{
                     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                     {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -79,8 +82,8 @@ public class Window extends JPanel implements Runnable {
             }
         }
 
-        graphics2D.drawImage(bomber, 16 * 3, 16 * 3, 16 * 3, 16 * 3, null);
-
+        // graphics2D.drawImage(bomber, 16 * 3 + 40, 16 * 3 + 40, 16 * 3, 16 * 3, null);
+		br.draw();
         Graphics graphics = getGraphics();
         graphics.drawImage(this.image, 0, 0, 31 * 3 * 16, 13 * 3 * 16, null);
         graphics.dispose();
