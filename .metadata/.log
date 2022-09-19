@@ -751,3 +751,909 @@ Command-line arguments:  -data /home/cha0s/Bomberman
 
 !ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 00:36:17.586
 !MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 00:39:19.378
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 00:39:19.385
+!MESSAGE Reconciled 1. Took 1 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 00:39:19.398
+!MESSAGE >> document/completion
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 00:39:19.400
+!MESSAGE Completion request completed
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 00:39:19.854
+!MESSAGE begin problem for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 00:39:19.855
+!MESSAGE TODO: implement is of type Task
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 00:39:19.855
+!MESSAGE 2 problems reported for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 00:39:19.856
+!MESSAGE Validated 1. Took 21 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 00:39:20.217
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 00:39:25.592
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:16:12.334
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:16:12.400
+!MESSAGE Reconciled 1. Took 4 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:16:12.503
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:16:12.564
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:16:12.774
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:16:12.833
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:16:13.305
+!MESSAGE begin problem for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:16:13.306
+!MESSAGE TODO: implement is of type Task
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:16:13.306
+!MESSAGE 2 problems reported for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:16:13.307
+!MESSAGE Validated 1. Took 23 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:16:13.423
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:16:17.596
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:16:28.041
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:16:28.534
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:16:35.525
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:16:41.203
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:38.310
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:38.367
+!MESSAGE Reconciled 1. Took 1 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:38.835
+!MESSAGE begin problem for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:38.836
+!MESSAGE TODO: implement is of type Task
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:38.837
+!MESSAGE 2 problems reported for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:38.837
+!MESSAGE Validated 1. Took 19 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:42.071
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:42.080
+!MESSAGE Reconciled 1. Took 1 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:42.547
+!MESSAGE begin problem for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:42.548
+!MESSAGE TODO: implement is of type Task
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:42.549
+!MESSAGE 2 problems reported for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:42.549
+!MESSAGE Validated 1. Took 18 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:43.214
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:43.234
+!MESSAGE Reconciled 1. Took 1 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:43.705
+!MESSAGE begin problem for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:43.706
+!MESSAGE TODO: implement is of type Task
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:43.707
+!MESSAGE 2 problems reported for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:43.708
+!MESSAGE Validated 1. Took 23 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:43.873
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:46.092
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:28:46.771
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:06.067
+!MESSAGE >> document/didOpen
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:06.095
+!MESSAGE Reconciled 1. Took 0 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:06.521
+!MESSAGE begin problem for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:06.521
+!MESSAGE 1 problems reported for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:06.544
+!MESSAGE begin problem for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:06.545
+!MESSAGE TODO: implement is of type Task
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:06.546
+!MESSAGE 2 problems reported for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:06.552
+!MESSAGE Validated 2. Took 54 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:10.743
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:10.801
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:11.272
+!MESSAGE begin problem for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:11.273
+!MESSAGE 1 problems reported for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:11.290
+!MESSAGE begin problem for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:11.291
+!MESSAGE TODO: implement is of type Task
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:11.291
+!MESSAGE 2 problems reported for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:11.292
+!MESSAGE Validated 2. Took 41 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.131
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.147
+!MESSAGE Reconciled 1. Took 8 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.255
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.258
+!MESSAGE >> document/completion
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.259
+!MESSAGE Completion request completed
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.266
+!MESSAGE Reconciled 1. Took 3 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.318
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.494
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.497
+!MESSAGE >> document/completion
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.504
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.506
+!MESSAGE Completion request completed
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.518
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.976
+!MESSAGE begin problem for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.976
+!MESSAGE 1 problems reported for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.994
+!MESSAGE begin problem for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.995
+!MESSAGE TODO: implement is of type Task
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.995
+!MESSAGE 2 problems reported for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:12.996
+!MESSAGE Validated 2. Took 41 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:13.371
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:14.170
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:14.370
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:14.381
+!MESSAGE Reconciled 1. Took 3 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:14.528
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:14.529
+!MESSAGE >> document/completion
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:14.530
+!MESSAGE Completion request completed
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:14.570
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:14.586
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.008
+!MESSAGE begin problem for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.009
+!MESSAGE 2 problems reported for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.031
+!MESSAGE begin problem for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.033
+!MESSAGE TODO: implement is of type Task
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.033
+!MESSAGE 2 problems reported for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.034
+!MESSAGE Validated 2. Took 47 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.077
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.079
+!MESSAGE >> document/completion
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.085
+!MESSAGE Completion request completed
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.135
+!MESSAGE Reconciled 1. Took 1 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.169
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.229
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.237
+!MESSAGE Reconciled 1. Took 1 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.371
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.373
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.380
+!MESSAGE Reconciled 1. Took 1 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.520
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.530
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.571
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.573
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.580
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.924
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.971
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:15.982
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.075
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.134
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.171
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.226
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.285
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.372
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.381
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.389
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.530
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.533
+!MESSAGE >> document/completion
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.534
+!MESSAGE Completion request completed
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.535
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.571
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.589
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.881
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.884
+!MESSAGE >> document/completion
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.889
+!MESSAGE Completion request completed
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.940
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:16.971
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:17.040
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:17.099
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:17.172
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:17.174
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:17.231
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:17.321
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:17.372
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:17.380
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:17.838
+!MESSAGE begin problem for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:17.838
+!MESSAGE 1 problems reported for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:17.842
+!MESSAGE begin problem for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:17.842
+!MESSAGE TODO: implement is of type Task
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:17.842
+!MESSAGE 2 problems reported for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:17.843
+!MESSAGE Validated 2. Took 13 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.090
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.149
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.172
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.371
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.376
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.429
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.491
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.493
+!MESSAGE >> document/completion
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.494
+!MESSAGE Completion request completed
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.537
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.572
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.704
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.706
+!MESSAGE >> document/completion
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.712
+!MESSAGE Completion request completed
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.764
+!MESSAGE Reconciled 1. Took 3 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.772
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.858
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.917
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.972
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:18.974
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:19.031
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:19.121
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:19.172
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:19.180
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:19.271
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:19.279
+!MESSAGE Reconciled 1. Took 1 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:19.373
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:19.752
+!MESSAGE begin problem for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:19.753
+!MESSAGE 1 problems reported for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:19.771
+!MESSAGE begin problem for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:19.772
+!MESSAGE TODO: implement is of type Task
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:19.773
+!MESSAGE 2 problems reported for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:19.773
+!MESSAGE Validated 2. Took 43 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:20.034
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:20.094
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:20.177
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:20.551
+!MESSAGE begin problem for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:20.551
+!MESSAGE 1 problems reported for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:20.558
+!MESSAGE begin problem for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:20.559
+!MESSAGE TODO: implement is of type Task
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:20.559
+!MESSAGE 2 problems reported for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:20.559
+!MESSAGE Validated 2. Took 15 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.006
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.065
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.180
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.532
+!MESSAGE begin problem for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.532
+!MESSAGE 1 problems reported for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.547
+!MESSAGE begin problem for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.548
+!MESSAGE TODO: implement is of type Task
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.548
+!MESSAGE 2 problems reported for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.549
+!MESSAGE Validated 2. Took 33 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.605
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.664
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.754
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.767
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.768
+!MESSAGE >> document/completion
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.770
+!MESSAGE Completion request completed
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.780
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.814
+!MESSAGE Reconciled 1. Took 3 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.847
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.849
+!MESSAGE >> document/completion
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.854
+!MESSAGE Completion request completed
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.856
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.980
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:21.981
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.038
+!MESSAGE Reconciled 1. Took 1 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.087
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.089
+!MESSAGE >> document/completion
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.090
+!MESSAGE Completion request completed
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.146
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.181
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.236
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.245
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.351
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.352
+!MESSAGE >> document/completion
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.357
+!MESSAGE Completion request completed
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.381
+!MESSAGE >> document/signatureHelp
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.410
+!MESSAGE Reconciled 1. Took 1 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.826
+!MESSAGE begin problem for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.827
+!MESSAGE 1 problems reported for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.841
+!MESSAGE begin problem for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.842
+!MESSAGE TODO: implement is of type Task
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.842
+!MESSAGE 2 problems reported for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:22.843
+!MESSAGE Validated 2. Took 32 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:23.141
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:23.653
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:24.501
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:25.033
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:25.508
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:25.990
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:26.567
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:27.056
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:27.556
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:35.262
+!MESSAGE >> document/didOpen
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:35.313
+!MESSAGE Reconciled 1. Took 0 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:35.780
+!MESSAGE begin problem for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:35.781
+!MESSAGE 1 problems reported for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:35.797
+!MESSAGE begin problem for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:35.798
+!MESSAGE TODO: implement is of type Task
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:35.798
+!MESSAGE 2 problems reported for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:35.841
+!MESSAGE begin problem for /Sprite.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:35.841
+!MESSAGE 1 problems reported for /Sprite.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:35.842
+!MESSAGE Validated 3. Took 79 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:39.341
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:39.788
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:48.151
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:48.210
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:48.302
+!MESSAGE >> document/didChange
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:48.312
+!MESSAGE Reconciled 1. Took 2 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:48.778
+!MESSAGE begin problem for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:48.779
+!MESSAGE 1 problems reported for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:48.795
+!MESSAGE begin problem for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:48.796
+!MESSAGE TODO: implement is of type Task
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:48.797
+!MESSAGE 2 problems reported for /TileMap.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:48.830
+!MESSAGE begin problem for /Sprite.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:48.830
+!MESSAGE 1 problems reported for /Sprite.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:48.831
+!MESSAGE Validated 3. Took 69 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:49.172
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:50.813
+!MESSAGE >> shutdown
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:50.814
+!MESSAGE >> exit
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:50.832
+!MESSAGE Shutdown received... waking up main thread
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:50.846
+!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is stopping:
+!SESSION 2022-09-19 15:29:57.179 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=18.0.2
+java.vendor=N/A
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -data /home/cha0s/Bomberman
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:58.614
+!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is started
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:58.820
+!MESSAGE Main thread is waiting
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:58.850
+!MESSAGE >> initialize
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:58.851
+!MESSAGE Initializing Java Language Server 1.15.0.202208311644
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:58.876
+!MESSAGE Static Commands: []
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:58.877
+!MESSAGE Non-Static Commands: [java.edit.organizeImports, java.project.refreshDiagnostics, java.project.import, java.navigate.openTypeHierarchy, java.project.removeFromSourcePath, java.project.listSourcePaths, java.project.resolveStackTraceLocation, java.project.getAll, java.project.isTestFile, java.project.getClasspaths, java.navigate.resolveTypeHierarchy, java.edit.stringFormatting, java.project.getSettings, java.project.updateSourceAttachment, java.project.resolveWorkspaceSymbol, java.project.upgradeGradle, java.protobuf.generateSources, java.project.resolveSourceAttachment, java.project.addToSourcePath]
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:58.881
+!MESSAGE Starting org.eclipse.m2e.core
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:58.881
+!MESSAGE Started org.eclipse.m2e.core 1ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:58.892
+!MESSAGE ProjectRegistryRefreshJob finished 11ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:58.892
+!MESSAGE Starting org.eclipse.buildship.core
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:58.949
+!MESSAGE Started org.eclipse.buildship.core 57ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:58.950
+!MESSAGE LoadingGradleVersionJob finished 0ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:58.966
+!MESSAGE >> initialized
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:59.448
+!MESSAGE Importing Maven project(s)
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:59.955
+!MESSAGE Workspace initialized in 1003ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:59.977
+!MESSAGE >> initialization job finished
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:59.978
+!MESSAGE >> workspace/didChangeConfiguration
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:59.990
+!MESSAGE >> New configuration: {java={progressReports={enabled=true}}}
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:29:59.991
+!MESSAGE >> document/didOpen
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:30:00.120
+!MESSAGE >> build jobs finished
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:30:00.121
+!MESSAGE >> registerWatchers'
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:30:00.122
+!MESSAGE >> watchers registered
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:30:00.635
+!MESSAGE Reconciled 1. Took 1 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:30:01.173
+!MESSAGE begin problem for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:30:01.176
+!MESSAGE 1 problems reported for /Spatial.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:30:01.188
+!MESSAGE Validated 1. Took 102 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:30:02.780
+!MESSAGE >> document/didSave
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:30:02.819
+!MESSAGE >> shutdown
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:30:02.826
+!MESSAGE >> exit
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:30:02.882
+!MESSAGE Shutdown received... waking up main thread
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-09-19 15:30:02.896
+!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is stopping:

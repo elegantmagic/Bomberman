@@ -16,6 +16,16 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>src/Spatial.java</name>
+			<type>1</type>
+			<location>//home/cha0s/Bomberman/src/main/java/Spatial.java</location>
+		</link>
+		<link>
+			<name>src/Sprite.java</name>
+			<type>1</type>
+			<location>//home/cha0s/Bomberman/src/main/java/Sprite.java</location>
+		</link>
+		<link>
 			<name>src/TileMap.java</name>
 			<type>1</type>
 			<location>//home/cha0s/Bomberman/src/main/java/TileMap.java</location>

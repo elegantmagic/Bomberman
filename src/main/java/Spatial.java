@@ -1,7 +1,5 @@
-
 public class Spatial {
-	protected int x;
-	protected int y;
+	protected int x, y;
 
 	public Spatial() {
 		this.x = 0;
