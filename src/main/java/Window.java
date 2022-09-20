@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.Objects;
 import javax.imageio.ImageIO;
@@ -11,18 +12,22 @@ public class Window extends JPanel implements Runnable {
     public static int height = 13;
     int[] scene;
 
+	private static JFrame frame;
+
     public Window() {
         setPreferredSize(new Dimension(width * 16 * 3, height * 16 * 3));
     }
 
+
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Bomberman");
+        frame = new JFrame("Bomberman");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.add(new Window());
         frame.setLocationRelativeTo(null);
         frame.pack();
         frame.setVisible(true);
+		frame.requestFocus();
     }
 
     @Override
@@ -44,6 +49,7 @@ public class Window extends JPanel implements Runnable {
             image = new BufferedImage(31 * 3 * 16, 13 * 3 * 16, BufferedImage.TYPE_INT_RGB);
             BufferedImage all = ImageIO.read(Objects.requireNonNull(getClass().getResource("/image/img.png")));
 			br = new Bomber();
+			frame.addKeyListener(br);
 			BufferedImage tileset[] = {all.getSubimage(0, 4 * 16, 16, 16), all.getSubimage(3 * 16, 3 * 16, 16, 16)};
 
             scene = new int[] {
@@ -65,7 +71,7 @@ public class Window extends JPanel implements Runnable {
 			tilemap = new TileMap(tileset, 31, 13, 3);
 			tilemap.setMap(scene);
 			
-
+		
 
 			Global.framebuffer = image;
         } catch (Exception e) {
@@ -74,6 +80,9 @@ public class Window extends JPanel implements Runnable {
     }
 
     public void draw() {
+		br.update(0.4f);
+
+
         Graphics2D graphics2D = (Graphics2D) image.getGraphics();
         graphics2D.setColor(new Color(56, 133, 0));
         graphics2D.fillRect(0, 0, 31 * 16 * 3, 13 * 16 * 3);
@@ -88,7 +97,6 @@ public class Window extends JPanel implements Runnable {
             }
         }*/
 		tilemap.draw();
-        // graphics2D.drawImage(bomber, 16 * 3 + 40, 16 * 3 + 40, 16 * 3, 16 * 3, null);
 		br.draw();
         Graphics graphics = getGraphics();
         graphics.drawImage(this.image, 0, 0, 31 * 3 * 16, 13 * 3 * 16, null);
