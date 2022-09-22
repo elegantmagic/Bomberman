@@ -6,5 +6,5 @@ import javax.swing.*;
 
 public class Global {
 	public static BufferedImage framebuffer;
-
+    public static TileMap tilemap;
 }

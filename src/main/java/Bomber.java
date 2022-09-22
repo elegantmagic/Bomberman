@@ -7,15 +7,8 @@ public class Bomber extends Sprite implements KeyListener {
 	// private BufferedImage sprite;
 	private int vx = 0; 
 	private int vy = 0;
-	public Bomber() {
-		super(null,  16 * 3, 16 * 3, 3);
-		try {
-        	BufferedImage all = ImageIO.read(Objects.requireNonNull(getClass().getResource("/image/img.png")));
-			this.sprite = all.getSubimage(4 * 16, 0, 16, 16);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+
+	private boolean W,A,S,D;
 
 	public Bomber(BufferedImage sprite) {
 		super(sprite, 16 * 3, 16 * 3, 3);
@@ -28,29 +21,63 @@ public class Bomber extends Sprite implements KeyListener {
 	public void update(float delta) {
 		x += vx * delta; 
 		y += vy * delta;
+
+        System.out.printf("%d %d\n", (x / 48), (y / 48));
 	}
 
 	public void keyPressed(KeyEvent e) {
 		// System.out.println(e.getKeyCode() == KeyEvent.VK_E);
 		if (e.getKeyCode() == KeyEvent.VK_W) {
-			vy = -10;
+			W = true;
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			vy = 10; 
+			S = true;
 		} else if (e.getKeyCode() == KeyEvent.VK_A) {
-			vx = -10;
+			A = true;
 		} else if (e.getKeyCode() == KeyEvent.VK_D) {
-			vx = 10;
+			D = true;
+		}
+
+		if (W && !S) {
+			vy = -14;
+		} else if (!W && S) {
+			vy = 14;
+		} else {
+			vy = 0;
+		}
+
+		if (A && !D) {
+			vx = -14;
+		} else if (!A && D) {
+			vx = 14;
+		} else {
+			vx = 0;
 		}
 	}
 
 	public void keyReleased(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_W) {
-			vy = 0;
+			W = false;
 		} else if (e.getKeyCode() == KeyEvent.VK_S) {
-			vy = 0; 
+			S = false;
 		} else if (e.getKeyCode() == KeyEvent.VK_A) {
-			vx = 0;
+			A = false;
 		} else if (e.getKeyCode() == KeyEvent.VK_D) {
+			D = false;
+		}
+
+		if (W && !S) {
+			vy = -10;
+		} else if (!W && S) {
+			vy = 10;
+		} else {
+			vy = 0;
+		}
+
+		if (A && !D) {
+			vx = -10;
+		} else if (!A && D) {
+			vx = 10;
+		} else {
 			vx = 0;
 		}
 	}

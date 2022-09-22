@@ -48,7 +48,7 @@ public class Window extends JPanel implements Runnable {
         try {
             image = new BufferedImage(31 * 3 * 16, 13 * 3 * 16, BufferedImage.TYPE_INT_RGB);
             BufferedImage all = ImageIO.read(Objects.requireNonNull(getClass().getResource("/image/img.png")));
-			br = new Bomber();
+			br = new Bomber(all.getSubimage(4 * 16, 0, 16, 16));
 			frame.addKeyListener(br);
 			BufferedImage tileset[] = {all.getSubimage(0, 4 * 16, 16, 16), all.getSubimage(3 * 16, 3 * 16, 16, 16)};
 
@@ -71,7 +71,7 @@ public class Window extends JPanel implements Runnable {
 			tilemap = new TileMap(tileset, 31, 13, 3);
 			tilemap.setMap(scene);
 			
-		
+	        Global.tilemap = tilemap;	
 
 			Global.framebuffer = image;
         } catch (Exception e) {
