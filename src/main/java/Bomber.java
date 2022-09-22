@@ -19,10 +19,12 @@ public class Bomber extends Sprite implements KeyListener {
 	}
 
 	public void update(float delta) {
-		x += vx * delta; 
-		y += vy * delta;
+        TileMap.Pair p = Global.tilemap.nearestSpace(x + (int)(vx * delta), y + (int)(vy * delta));
+        x = p.x;
+        y = p.y;
+        
+        // System.out.printf("%f %f\n", ((float)x / 48), ((float)y / 48));
 
-        System.out.printf("%d %d\n", (x / 48), (y / 48));
 	}
 
 	public void keyPressed(KeyEvent e) {
