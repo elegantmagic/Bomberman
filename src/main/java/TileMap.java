@@ -5,7 +5,6 @@ public class TileMap implements Drawable {
 	private BufferedImage[] tileset;
 	public int[] map;
 	private int width, height;
-	private int scale;
 	
 	public TileMap(BufferedImage[] tileset, int width, int height) {
 		this.tileset = tileset;
@@ -15,15 +14,6 @@ public class TileMap implements Drawable {
 		this.height = height;
 		this.map = new int[width * height];
 
-		this.scale = 1;
-	}
-	public TileMap(BufferedImage[] tileset, int width, int height, int scale) {
-		this.tileset = tileset;
-		this.width = width; 
-		this.height = height;
-		this.map = new int[width * height];
-
-		this.scale = scale;
 	}
 
 	public void setMap(int[] map) {
@@ -49,8 +39,9 @@ public class TileMap implements Drawable {
     }
 
     public Pair nearestSpace(int x, int y) {
+        final int scaledSize = Global.tileSize * Global.scaleBy;
         // clockwise        upper left      upper right          lower right               lower left
-        Pair[] corners = {new Pair(x, y), new Pair(x + 47, y), new Pair(x + 47, y + 47), new Pair(x, y + 47)};
+        Pair[] corners = {new Pair(x, y), new Pair(x + scaledSize - 1, y), new Pair(x + scaledSize - 1, y + scaledSize - 1), new Pair(x, y + scaledSize - 1)};
         boolean[] free = {whatAt(corners[0]) == 0, whatAt(corners[1]) == 0, whatAt(corners[2]) == 0, whatAt(corners[3]) == 0};
         int n = 0;
         for (int i = 0; i < free.length; i++) {
@@ -66,8 +57,8 @@ public class TileMap implements Drawable {
                     break;
                 }
             }
-            p.x -= p.x % 48;
-            p.y -= p.y % 48;
+            p.x -= p.x % scaledSize;
+            p.y -= p.y % scaledSize;
             return p;
         } else if (n == 2) {
             Pair a = null;
@@ -84,9 +75,9 @@ public class TileMap implements Drawable {
             }
             Pair c = corners[0];
             if (a.x == b.x) {
-                c.x = a.x - (a.x % 48); 
+                c.x = a.x - (a.x % scaledSize); 
             } else {
-                c.y = a.y - (a.y % 48);
+                c.y = a.y - (a.y % scaledSize);
             }
             return c;
         } else {
@@ -100,8 +91,8 @@ public class TileMap implements Drawable {
             } else {
                 o = corners[1];
             }
-            int nx = o.x - (o.x % 48);
-            int ny = o.y - (o.y % 48);
+            int nx = o.x - (o.x % scaledSize);
+            int ny = o.y - (o.y % scaledSize);
             if (Math.abs(nx - corners[0].x) > Math.abs(ny - corners[0].y)) {
                 corners[0].y = ny;
             } else {
@@ -121,10 +112,10 @@ public class TileMap implements Drawable {
 
 	
 	public void draw() {
-		int tsize = tileset[0].getWidth();
+        int scaledSize = Global.tileSize * Global.scaleBy;
 		for (int i = 0; i < map.length; i++) {
         	Graphics2D graphics2D = (Graphics2D) Global.framebuffer.getGraphics();
-			graphics2D.drawImage(tileset[map[i]], scale * tsize * getCoordX(i), scale * tsize * getCoordY(i), tsize * scale, tsize * scale, null);
+			graphics2D.drawImage(tileset[map[i]], scaledSize * getCoordX(i), scaledSize * getCoordY(i), scaledSize, scaledSize, null);
 		}
 	}
 }

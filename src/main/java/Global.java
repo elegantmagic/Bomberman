@@ -7,4 +7,7 @@ import javax.swing.*;
 public class Global {
 	public static BufferedImage framebuffer;
     public static TileMap tilemap;
+
+    public static final int scaleBy = 3;
+    public static final int tileSize = 16;
 }
