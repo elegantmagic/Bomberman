@@ -10,4 +10,5 @@ public class Global {
 
     public static final int scaleBy = 3;
     public static final int tileSize = 16;
+    public static final int playerSpeed = 14;
 }

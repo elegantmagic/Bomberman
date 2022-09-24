@@ -1,6 +1,4 @@
 import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-import java.util.Objects;
 import java.awt.event.*;
 
 public class Bomber extends Sprite implements KeyListener {
@@ -11,11 +9,11 @@ public class Bomber extends Sprite implements KeyListener {
 	private boolean W,A,S,D;
 
 	public Bomber(BufferedImage sprite) {
-		super(sprite, 16 * 3, 16 * 3, 3);
+		super(sprite, Global.scaleBy * Global.tileSize, Global.scaleBy * Global.tileSize);
 	}
 
 	public Bomber(BufferedImage sprite, int x, int y) {
-		super(sprite, x, y, 3);
+		super(sprite, x, y);
 	}
 
 	public void update(float delta) {
@@ -23,7 +21,6 @@ public class Bomber extends Sprite implements KeyListener {
         x = p.x;
         y = p.y;
         
-        // System.out.printf("%f %f\n", ((float)x / 48), ((float)y / 48));
 
 	}
 
@@ -40,17 +37,17 @@ public class Bomber extends Sprite implements KeyListener {
 		}
 
 		if (W && !S) {
-			vy = -14;
+			vy = -Global.playerSpeed;
 		} else if (!W && S) {
-			vy = 14;
+			vy = Global.playerSpeed;
 		} else {
 			vy = 0;
 		}
 
 		if (A && !D) {
-			vx = -14;
+			vx = -Global.playerSpeed;
 		} else if (!A && D) {
-			vx = 14;
+			vx = Global.playerSpeed;
 		} else {
 			vx = 0;
 		}
@@ -68,17 +65,17 @@ public class Bomber extends Sprite implements KeyListener {
 		}
 
 		if (W && !S) {
-			vy = -10;
+			vy = -Global.playerSpeed;
 		} else if (!W && S) {
-			vy = 10;
+			vy = Global.playerSpeed;
 		} else {
 			vy = 0;
 		}
 
 		if (A && !D) {
-			vx = -10;
+			vx = -Global.playerSpeed;
 		} else if (!A && D) {
-			vx = 10;
+			vx = Global.playerSpeed;
 		} else {
 			vx = 0;
 		}
