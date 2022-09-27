@@ -1,8 +1,5 @@
-import java.awt.*;
+import java.util.Random;
 import java.awt.image.BufferedImage;
-import java.util.Objects;
-import javax.imageio.ImageIO;
-import javax.swing.*;
 
 public class Global {
 	public static BufferedImage framebuffer;
@@ -10,5 +7,9 @@ public class Global {
 
     public static final int scaleBy = 3;
     public static final int tileSize = 16;
+    public static final int scaledSize = scaleBy * tileSize;
+
     public static final int playerSpeed = 14;
+
+    public static Random rnd = new Random(0312);
 }

@@ -1,10 +1,36 @@
 import java.awt.image.BufferedImage;
 import java.awt.*;
+import java.io.*;
 
 public class TileMap implements Drawable {
 	private BufferedImage[] tileset;
 	public int[] map;
-	private int width, height;
+	private int width;
+    private int height;
+
+    private int levelNum;
+
+    public TileMap(BufferedImage[] tileset, String level) throws IOException {
+        BufferedReader levelReader = new BufferedReader(new FileReader(level));
+        String[] rawMetadata = levelReader.readLine().split(" ");
+        assert(rawMetadata.length == 3);
+        
+        levelNum = Integer.parseInt(rawMetadata[0]); 
+        height = Integer.parseInt(rawMetadata[1]);
+        width = Integer.parseInt(rawMetadata[2]);
+
+        map = new int[height * width];
+        for (int row = 0; row < height; row++) {
+            String r = levelReader.readLine();
+            for (int col = 0; col < width; col++) {
+                map[getIdx(col, row)] = r.charAt(col) == '#' ? 1 : 0;
+            }
+        }
+
+
+        levelReader.close();
+        this.tileset = tileset;
+    }
 	
 	public TileMap(BufferedImage[] tileset, int width, int height) {
 		this.tileset = tileset;
@@ -102,11 +128,26 @@ public class TileMap implements Drawable {
         }
     }
 
-    public class Pair {
+    public boolean isFreeSpace(Pair position) {
+        return map[getIdx(position.x / Global.scaledSize, position.y / Global.scaledSize)] == 0;
+    }
+
+    public static class Pair {
         public int x, y; 
+        public Pair() {
+        }
         public Pair(int x, int y) {
             this.x = x; 
             this.y = y;
+        }
+
+        public boolean equals(Object other) {
+            if (other instanceof Pair) {
+                Pair o = (Pair)other;
+                return x == o.x && y == o.y;
+            } else {
+                return false;
+            }
         }
     }
 
@@ -118,4 +159,34 @@ public class TileMap implements Drawable {
 			graphics2D.drawImage(tileset[map[i]], scaledSize * getCoordX(i), scaledSize * getCoordY(i), scaledSize, scaledSize, null);
 		}
 	}
+    
+    /**
+     * Get levelNum.
+     *
+     * @return levelNum as int.
+     */
+    public int getLevelNum()
+    {
+        return levelNum;
+    }
+	
+	/**
+	 * Get width.
+	 *
+	 * @return width as int.
+	 */
+	public int getWidth()
+	{
+	    return width;
+	}
+    
+    /**
+     * Get height.
+     *
+     * @return height as int.
+     */
+    public int getHeight()
+    {
+        return height;
+    }
 }

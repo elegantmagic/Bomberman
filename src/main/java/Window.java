@@ -1,16 +1,14 @@
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.util.Objects;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.io.*;
 
 public class Window extends JPanel implements Runnable {
     boolean isRunning;
     Thread thread;
     public static int width = 31;
     public static int height = 13;
-    int[] scene;
 
 	private static JFrame frame;
 
@@ -43,36 +41,21 @@ public class Window extends JPanel implements Runnable {
     // BufferedImage image, wall, all, block; // bomber
 	private Bomber br;
 	private TileMap tilemap;
+    private Balloom test;
 
     public void start() {
         try {
-            image = new BufferedImage(31 * 3 * 16, 13 * 3 * 16, BufferedImage.TYPE_INT_RGB);
-            BufferedImage all = ImageIO.read(Objects.requireNonNull(getClass().getResource("/image/img.png")));
-			br = new Bomber(all.getSubimage(4 * 16, 0, 16, 16));
+            BufferedImage all = ImageIO.read(new File("image/img.png"));
+
+			br = new Bomber(all);
 			frame.addKeyListener(br);
 			BufferedImage tileset[] = {all.getSubimage(0, 4 * 16, 16, 16), all.getSubimage(3 * 16, 3 * 16, 16, 16)};
+            tilemap = new TileMap(tileset, "Level2.txt");
 
-            scene = new int[] {
-                    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-                    1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
-                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-                    1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
-                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-                    1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
-                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-                    1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
-                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-                    1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
-                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-                    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-            };
-
-			tilemap = new TileMap(tileset, 31, 13, 3);
-			tilemap.setMap(scene);
-			
 	        Global.tilemap = tilemap;	
+            test = new Balloom(all, new TileMap.Pair(Global.scaledSize, Global.scaledSize * 2));
 
+            image = new BufferedImage(tilemap.getWidth() * 3 * 16, tilemap.getHeight() * 3 * 16, BufferedImage.TYPE_INT_RGB);
 			Global.framebuffer = image;
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,31 +63,24 @@ public class Window extends JPanel implements Runnable {
     }
 
     public void draw() {
-		br.update(0.4f);
 
 
         Graphics2D graphics2D = (Graphics2D) image.getGraphics();
         graphics2D.setColor(new Color(56, 133, 0));
         graphics2D.fillRect(0, 0, 31 * 16 * 3, 13 * 16 * 3);
 
-		/*
-        int size = 16 * 3;
-        for (int i = 0; i < Window.width; i++) {
-            for (int j = 0; j < Window.height; j++) {
-                if (scene[j][i] == 1) {
-                    graphics2D.drawImage(block, i * size, j * size, size, size, null);
-                }
-            }
-        }*/
 		tilemap.draw();
 		br.draw();
+        test.draw();
+
         Graphics graphics = getGraphics();
         graphics.drawImage(this.image, 0, 0, 31 * 3 * 16, 13 * 3 * 16, null);
         graphics.dispose();
     }
 
     public void update() {
-
+		br.update(0.4f);
+        test.update(0.4f);
     }
 
     @Override
@@ -122,4 +98,33 @@ public class Window extends JPanel implements Runnable {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+            /*
+            scene = new int[] {
+                    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                    1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                    1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                    1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                    1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                    1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+                    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+            };
+            
+			tilemap = new TileMap(tileset, 31, 13);
+			tilemap.setMap(scene);
+			*/
 
