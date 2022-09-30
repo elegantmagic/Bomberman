@@ -1,3 +1,5 @@
+package main.java;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
@@ -10,7 +12,13 @@ public class Window extends JPanel implements Runnable {
     public static int width = 31;
     public static int height = 13;
 
-	private static JFrame frame;
+    private static JFrame frame;
+
+    private int index = 0;
+    private int frameBoom = 0;
+    private int interval = 7;
+    private boolean boom = false;
+    private int boomX, boomY;
 
     public Window() {
         setPreferredSize(new Dimension(width * 16 * 3, height * 16 * 3));
@@ -25,7 +33,7 @@ public class Window extends JPanel implements Runnable {
         frame.setLocationRelativeTo(null);
         frame.pack();
         frame.setVisible(true);
-		frame.requestFocus();
+        frame.requestFocus();
     }
 
     @Override
@@ -37,26 +45,32 @@ public class Window extends JPanel implements Runnable {
             thread.start();
         }
     }
-	private BufferedImage image;
+
+    private BufferedImage image;
     // BufferedImage image, wall, all, block; // bomber
-	private Bomber br;
-	private TileMap tilemap;
+    private Bomber br;
+    private TileMap tilemap;
     private Balloom test;
 
     public void start() {
         try {
             BufferedImage all = ImageIO.read(new File("image/img.png"));
 
-			br = new Bomber(all);
-			frame.addKeyListener(br);
-			BufferedImage tileset[] = {all.getSubimage(0, 4 * 16, 16, 16), all.getSubimage(3 * 16, 3 * 16, 16, 16)};
+            br = new Bomber(all);
+            frame.addKeyListener(br);
+            BufferedImage tileset[] = {all.getSubimage(0, 4 * 16, 16, 16),
+                    all.getSubimage(3 * 16, 3 * 16, 16, 16),
+                    all.getSubimage(4 * 16, 3 * 16, 16, 16),
+                    all.getSubimage(0 * 16, 3 * 16, 16, 16),
+                    all.getSubimage(1 * 16, 3 * 16, 16, 16),
+                    all.getSubimage(2 * 16, 3 * 16, 16, 16)};
             tilemap = new TileMap(tileset, "Level2.txt");
 
-	        Global.tilemap = tilemap;	
+            Global.tilemap = tilemap;
             test = new Balloom(all, new TileMap.Pair(Global.scaledSize, Global.scaledSize * 2));
 
             image = new BufferedImage(tilemap.getWidth() * 3 * 16, tilemap.getHeight() * 3 * 16, BufferedImage.TYPE_INT_RGB);
-			Global.framebuffer = image;
+            Global.framebuffer = image;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,8 +83,8 @@ public class Window extends JPanel implements Runnable {
         graphics2D.setColor(new Color(56, 133, 0));
         graphics2D.fillRect(0, 0, 31 * 16 * 3, 13 * 16 * 3);
 
-		tilemap.draw();
-		br.draw();
+        tilemap.draw();
+        br.draw();
         test.draw();
 
         Graphics graphics = getGraphics();
@@ -79,8 +93,26 @@ public class Window extends JPanel implements Runnable {
     }
 
     public void update() {
-		br.update(0.4f);
+        br.update(0.4f);
         test.update(0.4f);
+
+        if(br.isBoom()){
+            boom = true;
+            boomX = br.getVx()/48;
+            boomY = br.getVy()/48;
+        }
+
+        if (boom) {
+            frameBoom++;
+            if (frameBoom > interval) {
+                frameBoom = 0;
+                this.index = (++this.index) % 3;
+            }
+
+            tilemap.setMap(boomX, boomY, index+3);
+
+        }
+
     }
 
     @Override

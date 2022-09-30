@@ -1,3 +1,5 @@
+package main.java;
+
 public class Spatial {
 	protected int x, y;
 
