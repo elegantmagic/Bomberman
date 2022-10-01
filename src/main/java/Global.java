@@ -1,6 +1,6 @@
 //package main.java;
 
-import java.util.Random;
+import java.util.*;
 import java.awt.image.BufferedImage;
 
 public class Global {
@@ -14,34 +14,10 @@ public class Global {
     public static final int playerSpeed = 14;
 
     public static Random rnd = new Random(0312);
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public static Bomber bomber;
 
+    public static List<Drawable> drawables = new ArrayList<Drawable>(64);
+    public static List<Dynamic> dynamics = new ArrayList<Dynamic>(64);
 
-
+    public static BufferedImage all;
 }

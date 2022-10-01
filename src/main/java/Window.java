@@ -47,27 +47,20 @@ public class Window extends JPanel implements Runnable {
     }
 
     private BufferedImage image;
-    // BufferedImage image, wall, all, block; // bomber
-    private Bomber br;
+    private Bomber bomber;
     private TileMap tilemap;
-    private Balloom test;
 
     public void start() {
         try {
             BufferedImage all = ImageIO.read(new File("image/img.png"));
+            Global.all = all;
 
-			br = new Bomber(all);
-
-            Global.bomber = br;
+			bomber = new Bomber(all);
+            Global.bomber = bomber;
             
 
-
-
-			// frame.addKeyListener(br);
-			// BufferedImage tileset[] = {all.getSubimage(0, 4 * 16, 16, 16), all.getSubimage(3 * 16, 3 * 16, 16, 16)};
-
-            br = new Bomber(all);
-            frame.addKeyListener(br);
+            bomber = new Bomber(all);
+            frame.addKeyListener(bomber);
             BufferedImage tileset[] = {
                     all.getSubimage(0, 4 * 16, 16, 16),
                     all.getSubimage(3 * 16, 3 * 16, 16, 16),
@@ -75,11 +68,15 @@ public class Window extends JPanel implements Runnable {
                     all.getSubimage(0 * 16, 3 * 16, 16, 16),
                     all.getSubimage(1 * 16, 3 * 16, 16, 16),
                     all.getSubimage(2 * 16, 3 * 16, 16, 16)};
-
             tilemap = new TileMap(tileset, "Level2.txt");
-
             Global.tilemap = tilemap;
-            test = new Balloom(all, new TileMap.Pair(Global.scaledSize, Global.scaledSize * 2));
+
+
+
+            Balloom test = new Balloom(all, new TileMap.Pair(Global.scaledSize, Global.scaledSize * 2));
+
+            Global.dynamics.add(test);
+            Global.drawables.add(test);
 
 
 
@@ -114,8 +111,10 @@ public class Window extends JPanel implements Runnable {
         graphics2D.fillRect(0, 0, 31 * 16 * 3, 13 * 16 * 3);
 
         tilemap.draw();
-        br.draw();
-        test.draw();
+        bomber.draw();
+        for (Drawable d : Global.drawables) {
+            d.draw();
+        }
 
         Graphics graphics = getGraphics();
         graphics.drawImage(this.image, 0, 0, 31 * 3 * 16, 13 * 3 * 16, null);
@@ -123,13 +122,15 @@ public class Window extends JPanel implements Runnable {
     }
 
     public void update() {
-        br.update(0.4f);
-        test.update(0.4f);
-
-        if(br.isBoom()){
+        bomber.update(0.4f);
+        for (Dynamic d : Global.dynamics) {
+            d.update(0.4f);
+        }
+/*
+        if(bomber.isBoom()){
             boom = true;
-            boomX = br.getVx()/48;
-            boomY = br.getVy()/48;
+            boomX = bomber.getX()/48;
+            boomY = bomber.getY()/48;
         }
 
         if (boom) {
@@ -138,11 +139,10 @@ public class Window extends JPanel implements Runnable {
                 frameBoom = 0;
                 this.index = (++this.index) % 3;
             }
-
             tilemap.setMap(boomX, boomY, index+3);
 
         }
-
+*/
     }
 
     @Override
