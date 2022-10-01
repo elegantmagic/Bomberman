@@ -14,7 +14,7 @@ public class Oneal extends Animation {
             distances = new int[width * height];
             for (int row = 0; row < height; row++) {
                 for (int col = 0; col < width; col++) {
-                    distances[Global.tilemap.getIdx(col, row)] = Global.tilemap.map[Global.tilemap.getIdx(col, row)] == 0 ? Integer.MAX_VALUE : -1;
+                    distances[Global.tilemap.getIdx(col, row)] = Global.tilemap.map[Global.tilemap.getIdx(col, row)] == Integer.MAX_VALUE ? Integer.MAX_VALUE : -1;
                 }
             }
         }
@@ -38,7 +38,7 @@ public class Oneal extends Animation {
     }
 
     private void dijkstra() {
-        
+                
 
 
 

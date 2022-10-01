@@ -6,7 +6,7 @@ import java.io.*;
 
 public class TileMap implements Drawable {
 	private BufferedImage[] tileset;
-	public int[] map;
+	public int[][] map;
 	private int width;
     private int height;
 
@@ -21,16 +21,16 @@ public class TileMap implements Drawable {
         height = Integer.parseInt(rawMetadata[1]);
         width = Integer.parseInt(rawMetadata[2]);
 
-        map = new int[height * width];
+        map = new int[width][height];
         for (int row = 0; row < height; row++) {
             String r = levelReader.readLine();
             for (int col = 0; col < width; col++) {
                 if(r.charAt(col) == '#') {
-                    map[getIdx(col, row)] = 1;
+                    map[col][row] = 1;
                 } else if(r.charAt(col) == ' '){
-                    map[getIdx(col, row)] = 0;
+                    map[col][row] = 0;
                 } else if(r.charAt(col) == '*') {
-                    map[getIdx(col, row)] = 2;
+                    map[col][row] = 2;
                 }
             }
         }
@@ -45,28 +45,16 @@ public class TileMap implements Drawable {
 
 		this.width = width; 
 		this.height = height;
-		this.map = new int[width * height];
+		this.map = new int[width][height];
 
 	}
 
 	public void setMap(int x, int y, int index) {
-		map[x + y * this.width] = index;
+		map[x][y] = index;
 	}
-
-	private int getCoordX(int idx) {
-		return idx % this.width;
-	}
-
-	private int getCoordY(int idx) {
-		return idx / this.width;
-	}
-
-    public int getIdx(int x, int y) {
-        return x + y * this.width;
-    }
-    
+  
     private int whatAt(Pair p) {
-        return map[getIdx(p.x / 48, p.y / 48)];
+        return map[p.x / Global.scaledSize][p.y / Global.scaledSize];
     }
 
     public Pair nearestSpace(int x, int y) {
@@ -139,7 +127,7 @@ public class TileMap implements Drawable {
     }
 
     public boolean isFreeSpace(Pair position) {
-        return map[getIdx(position.x / Global.scaledSize, position.y / Global.scaledSize)] == 0;
+        return map[position.x / Global.scaledSize][position.y / Global.scaledSize] == 0;
     }
 
     public static class Pair {
@@ -165,9 +153,13 @@ public class TileMap implements Drawable {
 	public void draw() {
         int scaledSize = Global.tileSize * Global.scaleBy;
 		for (int i = 0; i < map.length; i++) {
-        	Graphics2D graphics2D = (Graphics2D) Global.framebuffer.getGraphics();
-			graphics2D.drawImage(tileset[map[i]], scaledSize * getCoordX(i), scaledSize * getCoordY(i), scaledSize, scaledSize, null);
 		}
+        Graphics2D graphics2D = (Graphics2D) Global.framebuffer.getGraphics();
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+			    graphics2D.drawImage(tileset[map[x][y]], scaledSize * x, scaledSize * y, scaledSize, scaledSize, null);
+            }
+        }
 	}
     
     /**
