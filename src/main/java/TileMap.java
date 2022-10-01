@@ -1,3 +1,5 @@
+package main.java;
+
 import java.awt.image.BufferedImage;
 import java.awt.*;
 import java.io.*;
@@ -23,10 +25,15 @@ public class TileMap implements Drawable {
         for (int row = 0; row < height; row++) {
             String r = levelReader.readLine();
             for (int col = 0; col < width; col++) {
-                map[getIdx(col, row)] = r.charAt(col) == '#' ? 1 : 0;
+                if(r.charAt(col) == '#') {
+                    map[getIdx(col, row)] = 1;
+                } else if(r.charAt(col) == ' '){
+                    map[getIdx(col, row)] = 0;
+                } else if(r.charAt(col) == '*') {
+                    map[getIdx(col, row)] = 2;
+                }
             }
         }
-
 
         levelReader.close();
         this.tileset = tileset;
@@ -42,10 +49,8 @@ public class TileMap implements Drawable {
 
 	}
 
-	public void setMap(int[] map) {
-		for (int i = 0; i < Math.min(map.length, this.map.length); i++) {
-			this.map[i] = map[i];
-		}
+	public void setMap(int x, int y, int index) {
+		map[x + y * this.width] = index;
 	}
 
 	private int getCoordX(int idx) {

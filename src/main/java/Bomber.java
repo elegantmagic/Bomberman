@@ -1,12 +1,16 @@
+package main.java;
+
 import java.awt.image.BufferedImage;
 import java.awt.event.*;
 
 public class Bomber extends Animation implements KeyListener {
 	// private BufferedImage sprite;
-	private int vx = 0; 
+	private int vx = 0;
 	private int vy = 0;
 
 	private boolean W,A,S,D;
+
+	private boolean boom = false;
 
     public Bomber(BufferedImage all) {
         BufferedImage[] frames = new BufferedImage[12];
@@ -88,6 +92,10 @@ public class Bomber extends Animation implements KeyListener {
 		} else {
 			vx = 0;
 		}
+
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			boom = true;
+		}
 	}
 
 	public void keyReleased(KeyEvent e) {
@@ -99,6 +107,10 @@ public class Bomber extends Animation implements KeyListener {
 			A = false;
 		} else if (e.getKeyCode() == KeyEvent.VK_D) {
 			D = false;
+		}
+
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			boom = false;
 		}
 
 		if (W && !S) {
@@ -120,6 +132,18 @@ public class Bomber extends Animation implements KeyListener {
 
 	public void keyTyped(KeyEvent e) {
 		
+	}
+
+	public int getVx() {
+		return vx + 24;
+	}
+
+	public int getVy() {
+		return vy + 24;
+	}
+
+	public boolean isBoom() {
+		return boom;
 	}
 }
 
