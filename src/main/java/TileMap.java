@@ -1,4 +1,4 @@
-package main.java;
+//package main.java;
 
 import java.awt.image.BufferedImage;
 import java.awt.*;
@@ -107,8 +107,13 @@ public class TileMap implements Drawable {
             Pair c = corners[0];
             if (a.x == b.x) {
                 c.x = a.x - (a.x % scaledSize); 
-            } else {
+            } else if (a.y == b.y) {
                 c.y = a.y - (a.y % scaledSize);
+            } else {
+                c.x = (a.x + b.x) / 2;
+                c.y = (a.y + b.y) / 2;
+                c.x -= c.x % scaledSize;
+                c.y -= c.y % scaledSize;
             }
             return c;
         } else {

@@ -1,4 +1,4 @@
-package main.java;
+//package main.java;
 
 import java.awt.image.BufferedImage;
 import java.awt.event.*;

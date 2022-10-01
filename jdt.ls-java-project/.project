@@ -18,17 +18,27 @@
 		<link>
 			<name>src/Spatial.java</name>
 			<type>1</type>
-			<location>//home/cha0s/Bomberman/src/main/java/Spatial.java</location>
+			<location>/home/cha0s/Bomberman/src/main/java/Spatial.java</location>
 		</link>
 		<link>
 			<name>src/Sprite.java</name>
 			<type>1</type>
-			<location>//home/cha0s/Bomberman/src/main/java/Sprite.java</location>
+			<location>/home/cha0s/Bomberman/src/main/java/Sprite.java</location>
 		</link>
 		<link>
 			<name>src/TileMap.java</name>
 			<type>1</type>
-			<location>//home/cha0s/Bomberman/src/main/java/TileMap.java</location>
+			<location>/home/cha0s/Bomberman/src/main/java/TileMap.java</location>
+		</link>
+		<link>
+			<name>src/main/java/Animation.java</name>
+			<type>1</type>
+			<location>//home/cha0s/Bomberman/src/main/java/Animation.java</location>
+		</link>
+		<link>
+			<name>src/main/java/Window.java</name>
+			<type>1</type>
+			<location>/home/cha0s/Bomberman/src/main/java/Window.java</location>
 		</link>
 	</linkedResources>
 </projectDescription>
