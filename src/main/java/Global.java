@@ -12,4 +12,34 @@ public class Global {
     public static final int playerSpeed = 14;
 
     public static Random rnd = new Random(0312);
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static Bomber bomber;
+
+
+
 }

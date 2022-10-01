@@ -48,12 +48,36 @@ public class Window extends JPanel implements Runnable {
             BufferedImage all = ImageIO.read(new File("image/img.png"));
 
 			br = new Bomber(all);
+
+            Global.bomber = br;
+            
+
+
+
 			frame.addKeyListener(br);
 			BufferedImage tileset[] = {all.getSubimage(0, 4 * 16, 16, 16), all.getSubimage(3 * 16, 3 * 16, 16, 16)};
             tilemap = new TileMap(tileset, "Level2.txt");
 
 	        Global.tilemap = tilemap;	
             test = new Balloom(all, new TileMap.Pair(Global.scaledSize, Global.scaledSize * 2));
+
+
+
+
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
 
             image = new BufferedImage(tilemap.getWidth() * 3 * 16, tilemap.getHeight() * 3 * 16, BufferedImage.TYPE_INT_RGB);
 			Global.framebuffer = image;

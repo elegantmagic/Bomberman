@@ -56,7 +56,7 @@ public class TileMap implements Drawable {
 		return idx / this.width;
 	}
 
-    private int getIdx(int x, int y) {
+    public int getIdx(int x, int y) {
         return x + y * this.width;
     }
     
