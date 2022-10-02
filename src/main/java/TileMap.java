@@ -147,6 +147,10 @@ public class TileMap implements Drawable {
                 return false;
             }
         }
+
+        public int hashCode() {
+            return (x * 3134 - y * 11 * y) % 322;
+        }
     }
 
 	

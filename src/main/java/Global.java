@@ -11,7 +11,7 @@ public class Global {
     public static final int tileSize = 16;
     public static final int scaledSize = scaleBy * tileSize;
 
-    public static final int playerSpeed = 14;
+    public static final int playerSpeed = 25;
 
     public static Random rnd = new Random(0312);
     public static Bomber bomber;

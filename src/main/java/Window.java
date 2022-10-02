@@ -20,6 +20,8 @@ public class Window extends JPanel implements Runnable {
     private boolean boom = false;
     private int boomX, boomY;
 
+    private Oneal testing;
+
     public Window() {
         setPreferredSize(new Dimension(width * 16 * 3, height * 16 * 3));
     }
@@ -59,7 +61,6 @@ public class Window extends JPanel implements Runnable {
             Global.bomber = bomber;
             
 
-            bomber = new Bomber(all);
             frame.addKeyListener(bomber);
             BufferedImage tileset[] = {
                     all.getSubimage(0, 4 * 16, 16, 16),
@@ -78,9 +79,10 @@ public class Window extends JPanel implements Runnable {
             Global.dynamics.add(test);
             Global.drawables.add(test);
 
+            testing = new Oneal(all, new TileMap.Pair(Global.scaledSize, Global.scaledSize));
 
-
-
+            Global.drawables.add(testing);
+            Global.dynamics.add(testing);
 
 
 
@@ -122,27 +124,10 @@ public class Window extends JPanel implements Runnable {
     }
 
     public void update() {
-        bomber.update(0.4f);
+        bomber.update(0.2f);
         for (Dynamic d : Global.dynamics) {
-            d.update(0.4f);
+            d.update(0.2f);
         }
-/*
-        if(bomber.isBoom()){
-            boom = true;
-            boomX = bomber.getX()/48;
-            boomY = bomber.getY()/48;
-        }
-
-        if (boom) {
-            frameBoom++;
-            if (frameBoom > interval) {
-                frameBoom = 0;
-                this.index = (++this.index) % 3;
-            }
-            tilemap.setMap(boomX, boomY, index+3);
-
-        }
-*/
     }
 
     @Override
