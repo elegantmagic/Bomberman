@@ -110,14 +110,24 @@ public class Oneal extends Animation {
             dijkstra();
         }
 
+
         t += delta * 0.2f;
         if (t > 1.0f) {
             t = 0.0f;
             TileMap.Pair coord = new TileMap.Pair(targ.x / Global.scaledSize, targ.y / Global.scaledSize);
+            if (mode == 0 && Oneal.distances[coord.x][coord.y] < 3) {
+                mode = 1;
+            } else if (mode == 1 && Oneal.distances[coord.x][coord.y] > 8) {
+                mode = 0;
+            }
             TileMap.Pair options[] = {new TileMap.Pair(coord.x + 1, coord.y), new TileMap.Pair(coord.x - 1, coord.y), new TileMap.Pair(coord.x, coord.y - 1), new TileMap.Pair(coord.x, coord.y + 1)};
             for (int i = 0; i < options.length; i++) {
                 if (Oneal.distances[options[i].x][options[i].y] == -1) continue;
-                if (Oneal.distances[options[i].x][options[i].y] < Oneal.distances[coord.x][coord.y]) coord = options[i];
+                if (mode == 0) {
+                    if (Oneal.distances[options[i].x][options[i].y] < Oneal.distances[coord.x][coord.y]) coord = options[i];
+                } else if (mode == 1) {
+                    if (Oneal.distances[options[i].x][options[i].y] > Oneal.distances[coord.x][coord.y]) coord = options[i];
+                }
             }
             
             prev = targ;
