@@ -4,8 +4,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Sprite extends Spatial implements Drawable {
-	private BufferedImage sprite;
+	protected BufferedImage sprite;
 	
+    public Sprite() {
+
+    }
 
 	public Sprite(BufferedImage sprite) {
 		super();

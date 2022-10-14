@@ -1,16 +1,25 @@
 //package main.java;
 
 import java.awt.image.BufferedImage;
+import java.util.*;
 import java.awt.event.*;
 
-public class Bomber extends Animation implements KeyListener {
-	// private BufferedImage sprite;
+public class Bomber extends Animation implements KeyListener, BombPlanter {
 	private int vx = 0;
 	private int vy = 0;
 
 	private boolean W,A,S,D;
 
+    private boolean canPlantBomb = true;
+
 	private boolean boom = false;
+    
+    public int runSpeed;
+    public int bombRadius;
+
+    private List<ItemEffect> effects = new ArrayList<ItemEffect>();
+    private boolean allowedPlantingBomb = true;
+
 
     public Bomber(BufferedImage all) {
         BufferedImage[] frames = new BufferedImage[12];
@@ -37,6 +46,9 @@ public class Bomber extends Animation implements KeyListener {
 
         x = Global.tileSize * Global.scaleBy;
         y = Global.tileSize * Global.scaleBy;
+
+        runSpeed = Global.playerSpeed;
+        bombRadius = Global.expRad;
     }
 
 	public void update(float delta) {
@@ -62,7 +74,19 @@ public class Bomber extends Animation implements KeyListener {
             }
             this.setAnimate(true);
         }
+    
 
+        Iterator<ItemEffect> it = effects.iterator();
+        while (it.hasNext()) {
+            ItemEffect e = it.next();
+            if (e.checkTime(this, delta)) 
+                it.remove();
+        }
+
+        Collectable e = Collectable.maps[x / Global.scaledSize][y / Global.scaledSize];
+        if (e != null) {
+            e.collect();
+        }
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -75,20 +99,29 @@ public class Bomber extends Animation implements KeyListener {
 			A = true;
 		} else if (e.getKeyCode() == KeyEvent.VK_D) {
 			D = true;
-		}
+		} else if (e.getKeyCode() == KeyEvent.VK_SPACE && canPlantBomb && allowedPlantingBomb) {
+            int x_ = x - (x % Global.scaledSize);
+            int y_ = y - (y % Global.scaledSize);
+            canPlantBomb = false;
+            Bomb.plantBomb(x_, y_, bombRadius, this);
+            allowedPlantingBomb = false;
+        }
+
+        
+
 
 		if (W && !S) {
-			vy = -Global.playerSpeed;
+			vy = -runSpeed;
 		} else if (!W && S) {
-			vy = Global.playerSpeed;
+			vy = runSpeed;
 		} else {
 			vy = 0;
 		}
 
 		if (A && !D) {
-			vx = -Global.playerSpeed;
+			vx = -runSpeed;
 		} else if (!A && D) {
-			vx = Global.playerSpeed;
+			vx = runSpeed;
 		} else {
 			vx = 0;
 		}
@@ -107,24 +140,26 @@ public class Bomber extends Animation implements KeyListener {
 			A = false;
 		} else if (e.getKeyCode() == KeyEvent.VK_D) {
 			D = false;
-		}
+		} else if (e.getKeyCode() == KeyEvent.VK_SPACE && !canPlantBomb) {
+            canPlantBomb = true;
+        }
 
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 			boom = false;
 		}
 
 		if (W && !S) {
-			vy = -Global.playerSpeed;
+			vy = -runSpeed;
 		} else if (!W && S) {
-			vy = Global.playerSpeed;
+			vy = runSpeed;
 		} else {
 			vy = 0;
 		}
 
 		if (A && !D) {
-			vx = -Global.playerSpeed;
+			vx = -runSpeed;
 		} else if (!A && D) {
-			vx = Global.playerSpeed;
+			vx = runSpeed;
 		} else {
 			vx = 0;
 		}
@@ -145,5 +180,14 @@ public class Bomber extends Animation implements KeyListener {
 	public boolean isBoom() {
 		return boom;
 	}
+
+    public void addEffect(ItemEffect e) {
+        e.effectBomber(this);
+        effects.add(e);
+    }
+
+    public void allowPlantingBomb() {
+        allowedPlantingBomb = true;
+    }
 }
 
