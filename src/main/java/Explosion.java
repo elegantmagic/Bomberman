@@ -46,6 +46,7 @@ public class Explosion extends Spatial implements Drawable, Dynamic {
                     r++, x_ += d[i], y_ += d[(i + 1) % d.length]) {
                     if (Global.tilemap.map[x_][y_] == 2) {
                         Global.tilemap.map[x_][y_] = 0;
+                        Collectable.randomCollectableAt(y_, x_);
                     } else if (Global.tilemap.map[x_][y_] != 0) {
                         extents[i] = r;
                         break;

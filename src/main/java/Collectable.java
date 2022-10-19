@@ -28,4 +28,20 @@ public abstract class Collectable implements Drawable {
     }
 
     public abstract void collect();
+
+    public static Collectable randomCollectableAt(int row, int col) {
+        switch (Global.rnd.nextInt(3)) {
+            case 0:
+                System.out.println("Flame");
+                return new FlameItem(row, col);
+            case 1:
+                System.out.println("Speed");
+                return new SpeedItem(row, col);
+            case 2:
+                System.out.println("Bomb");
+                return new BombItem(row, col);
+            default:
+                return null;
+        }
+    }
 };

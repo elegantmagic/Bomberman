@@ -81,8 +81,10 @@ public class Window extends JPanel implements Runnable {
 
             Collectable.setTilemap(Global.tilemap);
             
-            SpeedItem.setIcon(all.getSubimage(1 * Global.tileSize, 14 * Global.tileSize, Global.tileSize, Global.tileSize));
-            
+            BombItem.setIcon(all.getSubimage(0* Global.tileSize, 14 * Global.tileSize, Global.tileSize, Global.tileSize));
+            FlameItem.setIcon(all.getSubimage(1* Global.tileSize, 14 * Global.tileSize, Global.tileSize, Global.tileSize));
+            SpeedItem.setIcon(all.getSubimage(2 * Global.tileSize, 14 * Global.tileSize, Global.tileSize, Global.tileSize));
+
 
             // new SpeedItem(1, 4);
 
