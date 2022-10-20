@@ -6,6 +6,7 @@ public class Explosion extends Spatial implements Drawable, Dynamic {
     private static BufferedImage[][] blast = null;
     private static BufferedImage[][] corner = null;
 
+    
     private static final float defusionTime = 0.28f;
     private float time = defusionTime;
     private int stage = 0;

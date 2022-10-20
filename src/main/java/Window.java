@@ -71,13 +71,6 @@ public class Window extends JPanel implements Runnable {
             tilemap = new TileMap(tileset, "Level2.txt");
             Global.tilemap = tilemap;
 
-            
-
-            // Balloom test = new Balloom(all, new TileMap.Pair(Global.scaledSize, Global.scaledSize * 2));
-
-            // Global.dynamics.add(test);
-            // Global.drawables.add(test);
-
 
             Collectable.setTilemap(Global.tilemap);
             
@@ -86,7 +79,6 @@ public class Window extends JPanel implements Runnable {
             SpeedItem.setIcon(all.getSubimage(2 * Global.tileSize, 14 * Global.tileSize, Global.tileSize, Global.tileSize));
 
 
-            // new SpeedItem(1, 4);
 
 
 
