@@ -1,10 +1,14 @@
 //package main.java;
 
+import javazoom.jl.player.Player;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.*;
+
+
 
 public class Window extends JPanel implements Runnable {
     boolean isRunning;
@@ -36,6 +40,23 @@ public class Window extends JPanel implements Runnable {
         frame.pack();
         frame.setVisible(true);
         frame.requestFocus();
+
+        Thread playMusic = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    FileInputStream file = new FileInputStream("C:\\Users\\Admin\\Documents\\GitHub\\Bomberman\\music.mp3");
+                    Player play = new Player(file);
+                    play.play();
+                    if(play.isComplete()) {
+                        play.play();
+                    }
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        });
+        playMusic.start();
     }
 
     @Override
