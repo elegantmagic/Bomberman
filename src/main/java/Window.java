@@ -7,8 +7,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.*;
-
-
+import javazoom.jl.player.advanced.AdvancedPlayer;
 
 public class Window extends JPanel implements Runnable {
     boolean isRunning;
@@ -45,12 +44,11 @@ public class Window extends JPanel implements Runnable {
             @Override
             public void run() {
                 try {
-                    FileInputStream file = new FileInputStream("C:\\Users\\Admin\\Documents\\GitHub\\Bomberman\\music.mp3");
-                    Player play = new Player(file);
-                    play.play();
-                    if(play.isComplete()) {
+                    do {
+                        FileInputStream file = new FileInputStream("C:\\Users\\Admin\\Documents\\GitHub\\Bomberman\\music.mp3");
+                        AdvancedPlayer play = new AdvancedPlayer(file);
                         play.play();
-                    }
+                    } while (true);
                 } catch (Exception e) {
                     System.out.println(e);
                 }
