@@ -45,7 +45,7 @@ public class Window extends JPanel implements Runnable {
             @Override
             public void run() {
                 try {
-                    FileInputStream file = new FileInputStream("C:\\Users\\Admin\\Documents\\GitHub\\Bomberman\\music.mp3");
+                    FileInputStream file = new FileInputStream("music.mp3");
                     Player play = new Player(file);
                     play.play();
                     if(play.isComplete()) {

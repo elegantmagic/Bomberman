@@ -13,4 +13,12 @@
         <maven.compiler.target>18</maven.compiler.target>
     </properties>
     
+    <dependencies>
+        <dependency>
+            <groupId>something.idk.whatever</groupId>
+            <artifactId>i.hate.java</artifactId>
+            <version>1.0.1</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 </project>
