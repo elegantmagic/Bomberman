@@ -2,3 +2,4 @@ out/
 target/
 .metadata/
 jdt.ls-java-project/
+.project

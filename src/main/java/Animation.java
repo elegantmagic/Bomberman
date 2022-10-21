@@ -33,6 +33,7 @@ public class Animation extends Spatial implements Drawable, Dynamic {
 
         this.segmentStarts = segmentStarts; 
         this.segmentLenghts = segmentLenghts;
+        
 
         this.segment = 0;
         this.fidx = 0;

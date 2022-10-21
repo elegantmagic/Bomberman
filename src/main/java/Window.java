@@ -24,7 +24,6 @@ public class Window extends JPanel implements Runnable {
     private boolean boom = false;
     private int boomX, boomY;
 
-    private Oneal testing;
 
     public Window() {
         setPreferredSize(new Dimension(width * 16 * 3, height * 16 * 3));
@@ -94,23 +93,13 @@ public class Window extends JPanel implements Runnable {
             Global.tilemap = tilemap;
 
 
-
-            Balloom test = new Balloom(all, new TileMap.Pair(Global.scaledSize, Global.scaledSize * 2));
-
-            Global.dynamics.add(test);
-            Global.drawables.add(test);
-
-            testing = new Oneal(all, new TileMap.Pair(Global.scaledSize, Global.scaledSize));
-
-            Global.drawables.add(testing);
-            Global.dynamics.add(testing);
-
-
-
-
-
-
+            Collectable.setTilemap(Global.tilemap);
             
+            BombItem.setIcon(all.getSubimage(0* Global.tileSize, 14 * Global.tileSize, Global.tileSize, Global.tileSize));
+            FlameItem.setIcon(all.getSubimage(1* Global.tileSize, 14 * Global.tileSize, Global.tileSize, Global.tileSize));
+            SpeedItem.setIcon(all.getSubimage(2 * Global.tileSize, 14 * Global.tileSize, Global.tileSize, Global.tileSize));
+
+
 
 
 
@@ -121,14 +110,18 @@ public class Window extends JPanel implements Runnable {
 
             image = new BufferedImage(tilemap.getWidth() * 3 * 16, tilemap.getHeight() * 3 * 16, BufferedImage.TYPE_INT_RGB);
             Global.framebuffer = image;
+
+
+            Oneal a = new Oneal(all, new TileMap.Pair(Global.scaledSize, Global.scaledSize));
+            Global.dynamics.add(a);
+            Global.drawables.add(a);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void draw() {
-
-
         Graphics2D graphics2D = (Graphics2D) image.getGraphics();
         graphics2D.setColor(new Color(56, 133, 0));
         graphics2D.fillRect(0, 0, 31 * 16 * 3, 13 * 16 * 3);
@@ -145,9 +138,25 @@ public class Window extends JPanel implements Runnable {
     }
 
     public void update() {
+        while (!Global.deleteQueue.isEmpty()) {
+            Object o = Global.deleteQueue.poll();
+            if (o instanceof Drawable)
+                Global.drawables.remove(o);
+            if (o instanceof Dynamic)
+                Global.dynamics.remove(o);
+        }
         bomber.update(0.2f);
+
         for (Dynamic d : Global.dynamics) {
             d.update(0.2f);
+        }
+
+        while (!Global.addQueue.isEmpty()) {
+            Object o = Global.addQueue.poll();
+            if (o instanceof Drawable)
+                Global.drawables.add((Drawable)o);
+            if (o instanceof Dynamic)
+                Global.dynamics.add((Dynamic)o);
         }
     }
 
@@ -171,28 +180,4 @@ public class Window extends JPanel implements Runnable {
 
 
 
-
-
-
-
-            /*
-            scene = new int[] {
-                    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-                    1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
-                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-                    1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
-                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-                    1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
-                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-                    1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
-                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-                    1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
-                    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-                    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-            };
-            
-			tilemap = new TileMap(tileset, 31, 13);
-			tilemap.setMap(scene);
-			*/
 
