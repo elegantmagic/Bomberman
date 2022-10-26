@@ -24,4 +24,6 @@ public class Global {
 
     public static Queue<Object> addQueue = new ArrayDeque<Object>();
     public static Queue<Object> deleteQueue = new ArrayDeque<Object>();
+
+    public static SpaceSearch ss;
 }

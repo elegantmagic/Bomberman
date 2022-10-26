@@ -91,6 +91,8 @@ public class Window extends JPanel implements Runnable {
                     all.getSubimage(2 * 16, 3 * 16, 16, 16)};
             tilemap = new TileMap(tileset, "Level2.txt");
             Global.tilemap = tilemap;
+            Global.ss = new SpaceSearch();
+            SpaceSearch.setup(tilemap);
 
 
             Collectable.setTilemap(Global.tilemap);
@@ -112,9 +114,30 @@ public class Window extends JPanel implements Runnable {
             Global.framebuffer = image;
 
 
-            Oneal a = new Oneal(all, new TileMap.Pair(Global.scaledSize, Global.scaledSize));
-            Global.dynamics.add(a);
-            Global.drawables.add(a);
+            
+
+            for (int i = 0; i < 5; i++) {
+                int row = Global.rnd.nextInt(1, tilemap.getHeight());
+                int col = Global.rnd.nextInt(1, tilemap.getWidth());
+                if (tilemap.map[col][row] == 0) {
+                    Oneal a = new Oneal(all, new TileMap.Pair(col * Global.scaledSize, row * Global.scaledSize));
+                    Global.dynamics.add(a);
+                    Global.drawables.add(a);
+                } else {
+                    i--;
+                }
+            }
+            for (int i = 0; i < 5; i++) {
+                int row = Global.rnd.nextInt(1, tilemap.getHeight());
+                int col = Global.rnd.nextInt(1, tilemap.getWidth());
+                if (tilemap.map[col][row] == 0) {
+                    Balloom a = new Balloom(all, new TileMap.Pair(col * Global.scaledSize, row * Global.scaledSize));
+                    Global.dynamics.add(a);
+                    Global.drawables.add(a);
+                } else {
+                    i--;
+                }
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -144,6 +167,8 @@ public class Window extends JPanel implements Runnable {
                 Global.drawables.remove(o);
             if (o instanceof Dynamic)
                 Global.dynamics.remove(o);
+            if (o instanceof Oneal || o instanceof Balloom) 
+                SpaceSearch.remove((Spatial)o);
         }
         bomber.update(0.2f);
 

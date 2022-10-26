@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 class Balloom extends Animation {
     private TileMap.Pair prev;    
-    private TileMap.Pair next;
+    private TileMap.Pair targ;
     private float t;
 
     public Balloom(BufferedImage all, TileMap.Pair initial) {
@@ -17,7 +17,7 @@ class Balloom extends Animation {
 
         for (int i = 0; i < options.length; i++) {
             if (Global.tilemap.isFreeSpace(options[i])) {
-                next = options[i];
+                targ = options[i];
                 break;
             }
         }
@@ -46,21 +46,26 @@ class Balloom extends Animation {
 
 
     public void update(float delta) {
+        SpaceSearch.remove(this);
         super.update(delta);
-        x = (int)(next.x * t) + (int)((1 - t) * prev.x);
-        y = (int)(next.y * t) + (int)((1 - t) * prev.y);
+
+        x = prev.x + (int)((targ.x - prev.x) * t);
+        y = prev.y + (int)((targ.y - prev.y) * t);
+
+
         t += delta * 0.1f;
         if (t > 1.0f) {
             t = 0.0f;
             pathing();
         }
+        SpaceSearch.add(this);
     }
 
     private void pathing() {
-        TileMap.Pair[] options = {new TileMap.Pair(next.x - Global.scaledSize, next.y)
-                                , new TileMap.Pair(next.x + Global.scaledSize, next.y)
-                                , new TileMap.Pair(next.x, next.y - Global.scaledSize)
-                                , new TileMap.Pair(next.x, next.y + Global.scaledSize)};
+        TileMap.Pair[] options = {new TileMap.Pair(targ.x - Global.scaledSize, targ.y)
+                                , new TileMap.Pair(targ.x + Global.scaledSize, targ.y)
+                                , new TileMap.Pair(targ.x, targ.y - Global.scaledSize)
+                                , new TileMap.Pair(targ.x, targ.y + Global.scaledSize)};
         int f = 0;
         for (int i = 0; i < options.length; i++) {
             if (!Global.tilemap.isFreeSpace(options[i]) || options[i].equals(prev)) {
@@ -70,19 +75,19 @@ class Balloom extends Animation {
             }
         }
         if (f == 0) {
-            TileMap.Pair a = next;
-            next = prev; 
+            TileMap.Pair a = targ;
+            targ = prev; 
             prev = a;
         } else {
             int k = Global.rnd.nextInt(4);
             for (int i = 0; i < options.length; i++) {
                 if (options[(i + k) % options.length] != null) {
-                    prev = next; 
-                    next = options[(i + k) % options.length];
+                    prev = targ; 
+                    targ = options[(i + k) % options.length];
                     break;
                 }
             }
         }
-        assert(next.x % Global.scaledSize == 0 && next.y % Global.scaledSize == 0);
+        assert(targ.x % Global.scaledSize == 0 && targ.y % Global.scaledSize == 0);
     }
 }

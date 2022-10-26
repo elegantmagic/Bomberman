@@ -52,8 +52,7 @@ public class Bomb extends Animation {
 
     public static Bomb plantBomb(int col, int row, int radus, BombPlanter bp) {
         Bomb bomb = new Bomb(Global.all, col, row, radus, bp);
-        Global.drawables.add(bomb);
-        Global.dynamics.add(bomb);
+        Global.addQueue.add(bomb);
         return bomb;
     }
 

@@ -1,5 +1,8 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.HashSet;
+import java.util.Set;
+
 
 public class Explosion extends Spatial implements Drawable, Dynamic {
     private static BufferedImage[] center = null;
@@ -39,22 +42,38 @@ public class Explosion extends Spatial implements Drawable, Dynamic {
         setY(bomb.getY());
         int x = bomb.getX() / Global.scaledSize;
         int y = bomb.getY() / Global.scaledSize;
+
+        Set<Spatial> killedEnemies = new HashSet<Spatial>();
         for (int i = 0; i < extents.length; i++) {
             final int[] d = {0, -1, 0, 1};
             extents[i] = blastRadius;
             for (int r = 0, x_ = x, y_ = y; 
                     r < blastRadius;
                     r++, x_ += d[i], y_ += d[(i + 1) % d.length]) {
+                    if (r + 1 != blastRadius) {
+                        Set<Spatial> any = SpaceSearch.anyAt(y_, x_);
+                        for (Spatial s : any) {
+                            if (s instanceof Bomber) {
+                                System.out.println("You lose");
+                            } else {
+                                killedEnemies.add(s);
+                            }
+                        }
+                    }
+                    
                     if (Global.tilemap.map[x_][y_] == 2) {
                         Global.tilemap.map[x_][y_] = 0;
                         Collectable.randomCollectableAt(y_, x_);
+                        extents[i] = r;
+                        break;
                     } else if (Global.tilemap.map[x_][y_] != 0) {
                         extents[i] = r;
                         break;
                     }
                 }
         }
-        
+
+        Global.deleteQueue.addAll(killedEnemies); 
     }
 
     public void draw() {

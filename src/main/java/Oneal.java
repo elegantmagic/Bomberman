@@ -104,6 +104,7 @@ public class Oneal extends Animation {
 
     public void update(float delta) {
         super.update(delta);
+        SpaceSearch.remove(this);
         Oneal.untilNextRefresh -= delta;
         if (Oneal.untilNextRefresh <= 0.0f) {
             Oneal.untilNextRefresh = 10.0f;
@@ -124,9 +125,9 @@ public class Oneal extends Animation {
             for (int i = 0; i < options.length; i++) {
                 if (Oneal.distances[options[i].x][options[i].y] == -1) continue;
                 if (mode == 0) {
-                    if (Oneal.distances[options[i].x][options[i].y] < Oneal.distances[coord.x][coord.y]) coord = options[i];
+                    if (Oneal.distances[options[i].x][options[i].y] + (int)(Global.rnd.nextGaussian() / 2) < Oneal.distances[coord.x][coord.y]) coord = options[i];
                 } else if (mode == 1) {
-                    if (Oneal.distances[options[i].x][options[i].y] > Oneal.distances[coord.x][coord.y]) coord = options[i];
+                    if (Oneal.distances[options[i].x][options[i].y] + (int)(Global.rnd.nextGaussian() / 2) > Oneal.distances[coord.x][coord.y]) coord = options[i];
                 }
             }
             
@@ -135,9 +136,14 @@ public class Oneal extends Animation {
             targ.x *= Global.scaledSize;
             targ.y *= Global.scaledSize;
         }
-
+        
+        /*
         x = (int)(targ.x * t) + (int)(prev.x * (1 - t));
         y = (int)(targ.y * t) + (int)(prev.y * (1 - t));
+        */
+        x = prev.x + (int)((targ.x - prev.x) * t);
+        y = prev.y + (int)((targ.y - prev.y) * t);
+        SpaceSearch.add(this);
     }
 
 
