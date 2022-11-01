@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.*;
 import java.awt.event.*;
 
-public class Bomber extends Animation implements KeyListener, BombPlanter {
+public class Bomber extends Animation implements KeyListener, BombPlanter, Mortal {
 	private int vx = 0;
 	private int vy = 0;
 
@@ -20,26 +20,38 @@ public class Bomber extends Animation implements KeyListener, BombPlanter {
     private List<ItemEffect> effects = new ArrayList<ItemEffect>();
     private boolean allowedPlantingBomb = true;
 
+    public boolean isAlive = true;
+
+    public boolean canPlantBomb() { return allowedPlantingBomb; }
+
 
     public Bomber(BufferedImage all) {
-        BufferedImage[] frames = new BufferedImage[12];
-        float[] frameLengths = new float[12];
-        for (int i = 0; i < frames.length; i++) {
+        BufferedImage[] frames = new BufferedImage[12 + 7];
+        float[] frameLengths = new float[12 + 7];
+        for (int i = 0; i < 12; i++) {
             frameLengths[i] = 0.5f;
 
             int x = i % 6;
             int y = i / 6;
             frames[i] = all.getSubimage(Global.tileSize * x, Global.tileSize * y, Global.tileSize, Global.tileSize);    
         }
+        for (int i = 0; i < 7; i++) {
+            frameLengths[i + 12] = 0.5f;
+
+            frames[i + 12] = all.getSubimage(Global.tileSize * i, Global.tileSize * 2, Global.tileSize, Global.tileSize);
+        }
         this.setFrames(frames);
         this.setFrameLengths(frameLengths);
 
-        int[] segmentStarts = new int[4];
-        int[] segmentLengths = new int[4];
+        int[] segmentStarts = new int[5];
+        int[] segmentLengths = new int[5];
         for (int i = 0; i < 4; i++) {
             segmentStarts[i] = 3 * i;
             segmentLengths[i] = 3;
         }
+
+        segmentStarts[4] = 12;
+        segmentLengths[4] = 7;
 
         this.setSegmentLenghts(segmentLengths);
         this.setSegmentStarts(segmentStarts);
@@ -53,6 +65,9 @@ public class Bomber extends Animation implements KeyListener, BombPlanter {
 
 	public void update(float delta) {
         super.update(delta);
+        SpaceSearch.remove(this);
+
+        if (!isAlive) return;
         TileMap.Pair p = Global.tilemap.nearestSpace(x + (int)(vx * delta), y + (int)(vy * delta));
         int dx = p.x - x;
         int dy = p.y - y;
@@ -83,10 +98,12 @@ public class Bomber extends Animation implements KeyListener, BombPlanter {
                 it.remove();
         }
 
-        Collectable e = Collectable.maps[x / Global.scaledSize][y / Global.scaledSize];
-        if (e != null) {
+        Collectable e = Collectable.maps[(x + Global.scaledSize / 2) / Global.scaledSize][(y + Global.scaledSize / 2) / Global.scaledSize];
+        if (e != null && e.canBeCollected(this)) {
             e.collect();
         }
+
+        SpaceSearch.add(this);
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -100,11 +117,14 @@ public class Bomber extends Animation implements KeyListener, BombPlanter {
 		} else if (e.getKeyCode() == KeyEvent.VK_D) {
 			D = true;
 		} else if (e.getKeyCode() == KeyEvent.VK_SPACE && canPlantBomb && allowedPlantingBomb) {
-            int x_ = x - (x % Global.scaledSize);
-            int y_ = y - (y % Global.scaledSize);
+            int x_ = x + Global.scaledSize / 2;
+            x_ -= (x_ % Global.scaledSize);
+            int y_ = y + Global.scaledSize / 2;
+            y_ -= (y_ % Global.scaledSize);
             canPlantBomb = false;
             Bomb.plantBomb(x_, y_, bombRadius, this);
             allowedPlantingBomb = false;
+        } else if (e.getKeyCode() == KeyEvent.VK_P) {
         }
 
         
@@ -188,6 +208,16 @@ public class Bomber extends Animation implements KeyListener, BombPlanter {
 
     public void allowPlantingBomb() {
         allowedPlantingBomb = true;
+    }
+
+    public void die() {
+        if (!isAlive) return;
+        isAlive = false;
+
+        setAnimate(true);
+        setSegment(4);
+        setCycleNo(0);
+        resetCycle();
     }
 }
 

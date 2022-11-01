@@ -11,6 +11,7 @@ public class TileMap implements Drawable {
     private int height;
 
     private int levelNum;
+    public int nbrick = 0;
 
     public TileMap(BufferedImage[] tileset, String level) throws IOException {
         BufferedReader levelReader = new BufferedReader(new FileReader(level));
@@ -31,6 +32,7 @@ public class TileMap implements Drawable {
                     map[col][row] = 0;
                 } else if(r.charAt(col) == '*') {
                     map[col][row] = 2;
+                    nbrick++;
                 }
             }
         }

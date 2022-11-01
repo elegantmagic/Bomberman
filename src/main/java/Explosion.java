@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.HashSet;
 import java.util.Set;
 
 
@@ -16,6 +15,7 @@ public class Explosion extends Spatial implements Drawable, Dynamic {
 
     private int[] extents = {0, 0, 0, 0};
     private int blastRadius;
+
 
     public Explosion(Bomb bomb) {
         this.blastRadius = bomb.getRadius();
@@ -43,7 +43,6 @@ public class Explosion extends Spatial implements Drawable, Dynamic {
         int x = bomb.getX() / Global.scaledSize;
         int y = bomb.getY() / Global.scaledSize;
 
-        Set<Spatial> killedEnemies = new HashSet<Spatial>();
         for (int i = 0; i < extents.length; i++) {
             final int[] d = {0, -1, 0, 1};
             extents[i] = blastRadius;
@@ -53,14 +52,12 @@ public class Explosion extends Spatial implements Drawable, Dynamic {
                     if (r + 1 != blastRadius) {
                         Set<Spatial> any = SpaceSearch.anyAt(y_, x_);
                         for (Spatial s : any) {
-                            if (s instanceof Bomber) {
-                                System.out.println("You lose");
-                            } else {
-                                killedEnemies.add(s);
+                            if (s instanceof Mortal) {
+                                ((Mortal)s).die();
                             }
                         }
                     }
-                    
+                    Global.bombBlast.map[x_][y_] -= -2 * (blastRadius - r - 1);
                     if (Global.tilemap.map[x_][y_] == 2) {
                         Global.tilemap.map[x_][y_] = 0;
                         Collectable.randomCollectableAt(y_, x_);
@@ -73,7 +70,17 @@ public class Explosion extends Spatial implements Drawable, Dynamic {
                 }
         }
 
-        Global.deleteQueue.addAll(killedEnemies); 
+        // Global.distToBomber.update();
+
+
+        /*
+        for (int i = 0; i < Global.bombBlast.map.length; i++) {
+            for (int j = 0; j < Global.bombBlast.map[i].length; j++) {
+                System.out.print(Global.bombBlast.map[i][j] + " ");
+            }
+            System.out.println();
+        }*/
+
     }
 
     public void draw() {

@@ -28,20 +28,38 @@ public abstract class Collectable implements Drawable {
     }
 
     public abstract void collect();
+    public abstract boolean canBeCollected(Bomber b);
 
     public static Collectable randomCollectableAt(int row, int col) {
-        switch (Global.rnd.nextInt(3)) {
-            case 0:
-                System.out.println("Flame");
-                return new FlameItem(row, col);
-            case 1:
-                System.out.println("Speed");
-                return new SpeedItem(row, col);
-            case 2:
-                System.out.println("Bomb");
-                return new BombItem(row, col);
-            default:
-                return null;
+        if (Portal.exist) {
+            Global.tilemap.nbrick--;
+            switch (Global.rnd.nextInt(3)) {
+                case 0:
+                    return new FlameItem(row, col);
+                case 1:
+                    return new SpeedItem(row, col);
+                case 2:
+                    return new BombItem(row, col);
+                default:
+                    return null;
+            }
+        } else {
+            if (Global.rnd.nextInt(Global.tilemap.nbrick) == 0) {
+                Global.tilemap.nbrick--;
+                return new Portal(row, col);
+            }
+            Global.tilemap.nbrick--;
+            switch (Global.rnd.nextInt(3)) {
+                case 0:
+                    return new FlameItem(row, col);
+                case 1:
+                    return new SpeedItem(row, col);
+                case 2:
+                    return new BombItem(row, col);
+                default:
+                    return null;
+            }
+            
         }
     }
 };

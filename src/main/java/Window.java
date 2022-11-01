@@ -18,12 +18,6 @@ public class Window extends JPanel implements Runnable {
 
     private static JFrame frame;
 
-    private int index = 0;
-    private int frameBoom = 0;
-    private int interval = 7;
-    private boolean boom = false;
-    private int boomX, boomY;
-
 
     public Window() {
         setPreferredSize(new Dimension(width * 16 * 3, height * 16 * 3));
@@ -100,7 +94,7 @@ public class Window extends JPanel implements Runnable {
             BombItem.setIcon(all.getSubimage(0* Global.tileSize, 14 * Global.tileSize, Global.tileSize, Global.tileSize));
             FlameItem.setIcon(all.getSubimage(1* Global.tileSize, 14 * Global.tileSize, Global.tileSize, Global.tileSize));
             SpeedItem.setIcon(all.getSubimage(2 * Global.tileSize, 14 * Global.tileSize, Global.tileSize, Global.tileSize));
-
+            Portal.setIcon(all.getSubimage(11 * Global.tileSize, 3 * Global.tileSize, Global.tileSize, Global.tileSize));
 
 
 
@@ -139,6 +133,10 @@ public class Window extends JPanel implements Runnable {
                 }
             }
 
+
+            Global.distToBomber = new BomberDijkstra(tilemap);
+            Global.bombBlast = new BlastMap(tilemap);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -161,21 +159,6 @@ public class Window extends JPanel implements Runnable {
     }
 
     public void update() {
-        while (!Global.deleteQueue.isEmpty()) {
-            Object o = Global.deleteQueue.poll();
-            if (o instanceof Drawable)
-                Global.drawables.remove(o);
-            if (o instanceof Dynamic)
-                Global.dynamics.remove(o);
-            if (o instanceof Oneal || o instanceof Balloom) 
-                SpaceSearch.remove((Spatial)o);
-        }
-        bomber.update(0.2f);
-
-        for (Dynamic d : Global.dynamics) {
-            d.update(0.2f);
-        }
-
         while (!Global.addQueue.isEmpty()) {
             Object o = Global.addQueue.poll();
             if (o instanceof Drawable)
@@ -183,6 +166,24 @@ public class Window extends JPanel implements Runnable {
             if (o instanceof Dynamic)
                 Global.dynamics.add((Dynamic)o);
         }
+
+        while (!Global.deleteQueue.isEmpty()) {
+            Object o = Global.deleteQueue.poll();
+            if (o instanceof Drawable)
+                Global.drawables.remove(o);
+            if (o instanceof Dynamic)
+                Global.dynamics.remove(o);
+            if (o instanceof Oneal || o instanceof Balloom) {
+                Global.nEnemy--;
+                SpaceSearch.remove((Spatial)o);
+            }
+        }
+        bomber.update(0.2f);
+        Global.distToBomber.update();
+        for (Dynamic d : Global.dynamics) {
+            d.update(0.2f);
+        }
+        Global.distToBomber.update();
     }
 
     @Override

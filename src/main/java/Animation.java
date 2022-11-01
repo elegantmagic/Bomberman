@@ -16,6 +16,11 @@ public class Animation extends Spatial implements Drawable, Dynamic {
     private int segment;
 
     private boolean animate;
+    private int cycleNo = 0;
+
+    public void setCycleNo(int cycleNo) {
+        this.cycleNo = cycleNo;
+    }
     public Animation() {
         frames = null;
         frameLengths = null;
@@ -50,6 +55,7 @@ public class Animation extends Spatial implements Drawable, Dynamic {
             fidx++;
             if (fidx >= segmentLenghts[segment] + segmentStarts[segment]) {
                 fidx = segmentStarts[segment];
+                cycleNo++;
             }
         }
     }
@@ -65,6 +71,7 @@ public class Animation extends Spatial implements Drawable, Dynamic {
         fidx = segmentStarts[segment];
     }
     
+
     
     /**
      * Get frames.
@@ -312,5 +319,15 @@ public class Animation extends Spatial implements Drawable, Dynamic {
     public void setAnimate(boolean animate)
     {
         this.animate = animate;
+    }
+    
+    /**
+     * Get cycleNo.
+     *
+     * @return cycleNo as int.
+     */
+    public int getCycleNo()
+    {
+        return cycleNo;
     }
 }

@@ -1,10 +1,10 @@
 //package main.java;
 
 import java.awt.image.BufferedImage;
-import java.util.*;
 
-public class Oneal extends Animation {
-    static int[][] distances = null;
+public class Oneal extends Enemy {
+    private boolean hasBomb = true;
+
     static int width, height;
 
     static float untilNextRefresh = 10.0f;
@@ -12,29 +12,27 @@ public class Oneal extends Animation {
     private float t = 0.0f;
     private TileMap.Pair prev, targ; 
 
-    private int mode = 0; // Follow (1 = avoid)
+    private int mode = 0; 
+    // 0 : targeting bomber
+    // 1 : fleeing bomber
+    private boolean dying = false;
 
     public Oneal(BufferedImage all, TileMap.Pair initial) {
-        if (distances == null) {
-            Oneal.width = Global.tilemap.getWidth();
-            Oneal.height = Global.tilemap.getHeight();
-            distances = new int[width][height];
-            for (int x = 0; x < width; x++) {
-                for (int y = 0; y < height; y++) {
-                    Oneal.distances[x][y] = Global.tilemap.map[x][y] == 0 ? Integer.MAX_VALUE : -1;
-                }
-            }
-        }
+        Global.nEnemy++;
 
-        BufferedImage[] frames = new BufferedImage[6];
-        float[] frameLengths = new float[6];
-        for (int i = 0; i < frames.length; i++) {
+        BufferedImage[] frames = new BufferedImage[11];
+        float[] frameLengths = new float[11];
+        for (int i = 0; i < 6; i++) {
             frameLengths[i] = 1.8f;
             frames[i] = all.getSubimage(Global.tileSize * i, Global.tileSize * 16, Global.tileSize, Global.tileSize);
         }
+        for (int i = 6; i < frames.length; i++) {
+            frameLengths[i] = 1.8f;
+            frames[i] = all.getSubimage(Global.tileSize * (i + 1), Global.tileSize * 18, Global.tileSize, Global.tileSize);
+        }
 
-        int[] segmentStarts = {0};
-        int[] segmentLengths = {6};
+        int[] segmentStarts = {0, 6};
+        int[] segmentLengths = {6, 5};
 
         setFrames(frames);
         setFrameLengths(frameLengths);
@@ -46,108 +44,84 @@ public class Oneal extends Animation {
         y = initial.y;
         
         prev = initial;
-        dijkstra();
         
         TileMap.Pair coord = new TileMap.Pair(initial.x / Global.scaledSize, initial.y / Global.scaledSize);
-        TileMap.Pair options[] = {new TileMap.Pair(coord.x + 1, coord.y), new TileMap.Pair(coord.x - 1, coord.y), new TileMap.Pair(coord.x, coord.y - 1), new TileMap.Pair(coord.x, coord.y + 1)};
-        for (int i = 0; i < options.length; i++) {
-            if (Oneal.distances[options[i].x][options[i].y] == -1) continue;
-            if (Oneal.distances[options[i].x][options[i].y] < Oneal.distances[coord.x][coord.y]) coord = options[i];
-        }
 
         targ = coord;
         targ.x *= Global.scaledSize;
         targ.y *= Global.scaledSize;
     }
 
-    private void dijkstra() {
-        for (int x = 0; x < Oneal.width; x++) {
-            for (int y = 0; y < Oneal.height; y++) {
-                Oneal.distances[x][y] = Global.tilemap.map[x][y] == 0 ? Integer.MAX_VALUE : -1;
-            }
-        }
-        
-        Set<TileMap.Pair> frontier = new HashSet<TileMap.Pair>();
-        TileMap.Pair origin = new TileMap.Pair(Global.bomber.getX() / Global.scaledSize, Global.bomber.getY() / Global.scaledSize);
-        Oneal.distances[origin.x][origin.y] = 0;
-        frontier.add(origin);
-
-
-        while (!frontier.isEmpty()) {
-            TileMap.Pair closest = null;
-            int mdis = Integer.MAX_VALUE;
-            for (TileMap.Pair candidate : frontier) {
-                if (mdis > Oneal.distances[candidate.x][candidate.y]) {
-                    closest = candidate;
-                    mdis = Oneal.distances[candidate.x][candidate.y];
-                }
-            }
-            frontier.remove(closest);
-
-            TileMap.Pair[] adjacents = {new TileMap.Pair(closest.x + 1, closest.y),
-                                        new TileMap.Pair(closest.x - 1, closest.y), 
-                                        new TileMap.Pair(closest.x, closest.y + 1), 
-                                        new TileMap.Pair(closest.x, closest.y - 1),}; 
-            
-            for (int i = 0; i < adjacents.length; i++) {
-                if (distances[adjacents[i].x][adjacents[i].y] == -1) 
-                    continue;
-                if (distances[adjacents[i].x][adjacents[i].y] <= mdis + 1) 
-                    continue;
-                
-                Oneal.distances[adjacents[i].x][adjacents[i].y] = mdis + 1;
-                frontier.add(adjacents[i]);
-            }
-        }
-    }
 
 
     public void update(float delta) {
         super.update(delta);
         SpaceSearch.remove(this);
-        Oneal.untilNextRefresh -= delta;
-        if (Oneal.untilNextRefresh <= 0.0f) {
-            Oneal.untilNextRefresh = 10.0f;
-            dijkstra();
+        if (dying) {
+            if (getCycleNo() > 0) {
+                Global.deleteQueue.add(this);
+            }
+            return;
         }
 
 
-        t += delta * 0.2f;
+        Oneal.untilNextRefresh -= delta;
+        
+
+        if (Global.bomber.isAlive) t += delta * 0.2f;
         if (t > 1.0f) {
             t = 0.0f;
-            TileMap.Pair coord = new TileMap.Pair(targ.x / Global.scaledSize, targ.y / Global.scaledSize);
-            if (mode == 0 && Oneal.distances[coord.x][coord.y] < 3) {
-                mode = 1;
-            } else if (mode == 1 && Oneal.distances[coord.x][coord.y] > 8) {
-                mode = 0;
-            }
-            TileMap.Pair options[] = {new TileMap.Pair(coord.x + 1, coord.y), new TileMap.Pair(coord.x - 1, coord.y), new TileMap.Pair(coord.x, coord.y - 1), new TileMap.Pair(coord.x, coord.y + 1)};
-            for (int i = 0; i < options.length; i++) {
-                if (Oneal.distances[options[i].x][options[i].y] == -1) continue;
-                if (mode == 0) {
-                    if (Oneal.distances[options[i].x][options[i].y] + (int)(Global.rnd.nextGaussian() / 2) < Oneal.distances[coord.x][coord.y]) coord = options[i];
-                } else if (mode == 1) {
-                    if (Oneal.distances[options[i].x][options[i].y] + (int)(Global.rnd.nextGaussian() / 2) > Oneal.distances[coord.x][coord.y]) coord = options[i];
-                }
-            }
-            
-            prev = targ;
-            targ = coord;
-            targ.x *= Global.scaledSize;
-            targ.y *= Global.scaledSize;
+            path();
         }
         
-        /*
-        x = (int)(targ.x * t) + (int)(prev.x * (1 - t));
-        y = (int)(targ.y * t) + (int)(prev.y * (1 - t));
-        */
         x = prev.x + (int)((targ.x - prev.x) * t);
         y = prev.y + (int)((targ.y - prev.y) * t);
         SpaceSearch.add(this);
     }
 
+    protected TileMap.Pair path() {
+        TileMap.Pair coord = new TileMap.Pair(targ.x / Global.scaledSize, targ.y / Global.scaledSize);
+        if (mode == 0 && Global.distToBomber.map[coord.x][coord.y] < 4) {
+            if (hasBomb && Global.rnd.nextInt(2) == 0) {
+                Bomb.plantBomb((getX() + Global.scaledSize / 2) / Global.scaledSize * Global.scaledSize, (getY() + Global.scaledSize / 2) / Global.scaledSize * Global.scaledSize, 3, this);
+                hasBomb = false;
+            }
+            mode = 1;
+        } else if (mode == 1 && Global.distToBomber.map[coord.x][coord.y] > 8) {
+            mode = 0;
+        }
+        TileMap.Pair options[] = {new TileMap.Pair(coord.x + 1, coord.y), new TileMap.Pair(coord.x - 1, coord.y), new TileMap.Pair(coord.x, coord.y - 1), new TileMap.Pair(coord.x, coord.y + 1)};
+        int optimal = Integer.MAX_VALUE;
+        for (TileMap.Pair opt : options) {
+            int dijkstra = Global.distToBomber.map[opt.x][opt.y];
+            if (dijkstra == -1) continue;
+            int score = Global.bombBlast.map[opt.x][opt.y] < 0 ? (-16 * Global.bombBlast.map[opt.x][opt.y]) : dijkstra;  
+            if (dijkstra == Integer.MAX_VALUE) {
+                score = Global.bombBlast.map[opt.x][opt.y] * -16;
+            } else if (mode == 1) score = -score;
+            if (score < optimal) {
+                coord = opt;
+                optimal = score;
+            }
+        }
+        
+        prev = targ;
+        targ = coord;
+        targ.x *= Global.scaledSize;
+        targ.y *= Global.scaledSize;
+        return targ;
+    }
 
-    
 
+    @Override
+    public void allowPlantingBomb() {
+        hasBomb = true;
+    }
 
+    public void die() {
+        if (dying) return;
+        dying = true;
+        setSegment(1);
+        setCycleNo(0);
+    }
 }

@@ -21,5 +21,5 @@ public class SpeedItem extends Collectable {
         Collectable.collected(this);
     }
 
-    
+    public boolean canBeCollected(Bomber b) { return true; }    
 }
