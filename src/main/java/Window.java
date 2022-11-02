@@ -245,7 +245,9 @@ public class Window extends JPanel implements Runnable {
                 bomber.setX(bp.x * Global.scaledSize);
                 bomber.setY(bp.y * Global.scaledSize);
             } catch (Exception e) {
-                e.printStackTrace();
+                isRunning = false;
+                System.out.println("CONGRAT, YOU'VE WON!");
+                // e.printStackTrace();
             }
 
 
