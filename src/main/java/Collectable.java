@@ -31,6 +31,20 @@ public abstract class Collectable implements Drawable {
     public abstract boolean canBeCollected(Bomber b);
 
     public static Collectable randomCollectableAt(int row, int col) {
+        switch (Global.tilemap.collectableMap[col][row]) {
+            case 0: 
+                return new Portal(row, col);
+            case 1: 
+                return new BombItem(row, col);
+            case 2:
+                return new FlameItem(row, col);
+            case 3:
+                return new SpeedItem(row, col);
+            default: 
+                return null;
+
+        }
+        /*
         if (Portal.exist) {
             Global.tilemap.nbrick--;
             switch (Global.rnd.nextInt(3)) {
@@ -60,6 +74,6 @@ public abstract class Collectable implements Drawable {
                     return null;
             }
             
-        }
+        }*/
     }
 };

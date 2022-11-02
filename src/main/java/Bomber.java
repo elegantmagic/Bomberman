@@ -8,6 +8,8 @@ public class Bomber extends Animation implements KeyListener, BombPlanter, Morta
 	private int vx = 0;
 	private int vy = 0;
 
+    public int extrabomb = 0;
+
 	private boolean W,A,S,D;
 
     private boolean canPlantBomb = true;
@@ -116,17 +118,20 @@ public class Bomber extends Animation implements KeyListener, BombPlanter, Morta
 			A = true;
 		} else if (e.getKeyCode() == KeyEvent.VK_D) {
 			D = true;
-		} else if (e.getKeyCode() == KeyEvent.VK_SPACE && canPlantBomb && allowedPlantingBomb) {
+		} else if (e.getKeyCode() == KeyEvent.VK_SPACE && canPlantBomb && (allowedPlantingBomb || extrabomb > 0)) {
             int x_ = x + Global.scaledSize / 2;
             x_ -= (x_ % Global.scaledSize);
             int y_ = y + Global.scaledSize / 2;
             y_ -= (y_ % Global.scaledSize);
             canPlantBomb = false;
-            Bomb.plantBomb(x_, y_, bombRadius, this);
-            allowedPlantingBomb = false;
-        } else if (e.getKeyCode() == KeyEvent.VK_P) {
-        }
-
+            if (allowedPlantingBomb) {
+                Bomb.plantBomb(x_, y_, bombRadius, this);
+                allowedPlantingBomb = false;
+            } else {
+                Bomb.plantBomb(x_, y_, bombRadius, null);
+                extrabomb--;
+            }
+        } 
         
 
 

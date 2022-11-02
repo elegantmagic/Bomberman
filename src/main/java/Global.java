@@ -30,4 +30,7 @@ public class Global {
 
     public static LogicMap distToBomber;
     public static LogicMap bombBlast;
+
+    public static boolean nextlev = false;
+    public static int level = 1;
 }

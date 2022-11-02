@@ -17,7 +17,7 @@ public class Window extends JPanel implements Runnable {
     public static int height = 13;
 
     private static JFrame frame;
-
+    private BufferedImage[] tileset;
 
     public Window() {
         setPreferredSize(new Dimension(width * 16 * 3, height * 16 * 3));
@@ -83,11 +83,13 @@ public class Window extends JPanel implements Runnable {
                     all.getSubimage(0 * 16, 3 * 16, 16, 16),
                     all.getSubimage(1 * 16, 3 * 16, 16, 16),
                     all.getSubimage(2 * 16, 3 * 16, 16, 16)};
-            tilemap = new TileMap(tileset, "Level2.txt");
+            this.tileset = tileset;
+            Global.level = 1;
+            tilemap = new TileMap(tileset, "Level1.txt");
             Global.tilemap = tilemap;
             Global.ss = new SpaceSearch();
             SpaceSearch.setup(tilemap);
-
+            tilemap.spawnEnemy();
 
             Collectable.setTilemap(Global.tilemap);
             
@@ -103,35 +105,12 @@ public class Window extends JPanel implements Runnable {
 
 
 
-
             image = new BufferedImage(tilemap.getWidth() * 3 * 16, tilemap.getHeight() * 3 * 16, BufferedImage.TYPE_INT_RGB);
             Global.framebuffer = image;
 
 
             
 
-            for (int i = 0; i < 5; i++) {
-                int row = Global.rnd.nextInt(1, tilemap.getHeight());
-                int col = Global.rnd.nextInt(1, tilemap.getWidth());
-                if (tilemap.map[col][row] == 0) {
-                    Oneal a = new Oneal(all, new TileMap.Pair(col * Global.scaledSize, row * Global.scaledSize));
-                    Global.dynamics.add(a);
-                    Global.drawables.add(a);
-                } else {
-                    i--;
-                }
-            }
-            for (int i = 0; i < 5; i++) {
-                int row = Global.rnd.nextInt(1, tilemap.getHeight());
-                int col = Global.rnd.nextInt(1, tilemap.getWidth());
-                if (tilemap.map[col][row] == 0) {
-                    Balloom a = new Balloom(all, new TileMap.Pair(col * Global.scaledSize, row * Global.scaledSize));
-                    Global.dynamics.add(a);
-                    Global.drawables.add(a);
-                } else {
-                    i--;
-                }
-            }
 
 
             Global.distToBomber = new BomberDijkstra(tilemap);
@@ -184,6 +163,23 @@ public class Window extends JPanel implements Runnable {
             d.update(0.2f);
         }
         Global.distToBomber.update();
+        
+        if (Global.nextlev) {
+            Global.nextlev = false;
+            Global.level++;
+            try {
+                String nextlevfilename = String.format("Level%d.txt", Global.level);
+                tilemap = new TileMap(tileset, nextlevfilename);
+                SpaceSearch.reset(); 
+                TileMap.Pair bp = tilemap.randomFreeSpace();
+                bomber.setX(bp.x * Global.scaledSize);
+                bomber.setY(bp.y * Global.scaledSize);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
 
     @Override

@@ -11,8 +11,9 @@ class Balloom extends Enemy {
     private static final float rateParameter = -0.01f;
     private static final float playerSensitivity = 0.01f;
 
+
     private boolean dying = false;
-    public Balloom(BufferedImage all, TileMap.Pair initial) {
+    public Balloom(TileMap.Pair initial) {
         Global.nEnemy++;
 
         prev = initial;
@@ -33,7 +34,7 @@ class Balloom extends Enemy {
         float frameLengths[] = new float[11];
         for (int i = 0; i < frames.length; i++) {
             frameLengths[i] = 1.8f;
-            frames[i] = all.getSubimage(Global.tileSize * i, Global.tileSize * 15, Global.tileSize, Global.tileSize);
+            frames[i] = Global.all.getSubimage(Global.tileSize * i, Global.tileSize * 15, Global.tileSize, Global.tileSize);
         }
 
         int[] segmentStarts = {0, 6};
@@ -50,6 +51,10 @@ class Balloom extends Enemy {
         t = 0.0f;
 
         untilNextAttack = (float)Math.log(Global.rnd.nextFloat(0.001f, 0.999f)) / (rateParameter);
+    }
+
+    public static Balloom newBalloom(int x, int y) {
+        return new Balloom(new TileMap.Pair(x, y));
     }
 
 
@@ -69,7 +74,7 @@ class Balloom extends Enemy {
         y = prev.y + (int)((targ.y - prev.y) * t);
 
 
-        if (Global.bomber.isAlive) t += delta * 0.1f;
+        if (Global.bomber.isAlive) t += delta * 0.2f;
         if (t > 1.0f) {
             t = 0.0f;
             pathing();

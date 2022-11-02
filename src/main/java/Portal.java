@@ -19,7 +19,7 @@ public class Portal extends Collectable {
 
     public void collect() {
         exist = false;
-        System.out.println("Finished level!");
+        Global.nextlev = true;
     }
 
     public boolean canBeCollected(Bomber b) { return Global.nEnemy == 0; }

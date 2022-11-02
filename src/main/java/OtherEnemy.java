@@ -1,8 +1,7 @@
-//package main.java;
 
 import java.awt.image.BufferedImage;
 
-public class Oneal extends Enemy {
+public class OtherEnemy extends Enemy {
     private boolean hasBomb = true;
 
     static int width, height;
@@ -17,18 +16,18 @@ public class Oneal extends Enemy {
     // 1 : fleeing bomber
     private boolean dying = false;
 
-    public Oneal(TileMap.Pair initial) {
+    public OtherEnemy(TileMap.Pair initial) {
         Global.nEnemy++;
 
         BufferedImage[] frames = new BufferedImage[11];
         float[] frameLengths = new float[11];
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 6; i++) {
             frameLengths[i] = 1.8f;
-            frames[i] = Global.all.getSubimage(Global.tileSize * i, Global.tileSize * 16, Global.tileSize, Global.tileSize);
+            frames[i] = Global.all.getSubimage(Global.tileSize * i, Global.tileSize * 17, Global.tileSize, Global.tileSize);
         }
-        for (int i = 7; i < frames.length; i++) {
+        for (int i = 6; i < frames.length; i++) {
             frameLengths[i] = 1.8f;
-            frames[i] = Global.all.getSubimage(Global.tileSize * i, Global.tileSize * 18, Global.tileSize, Global.tileSize);
+            frames[i] = Global.all.getSubimage(Global.tileSize * i, Global.tileSize * 17, Global.tileSize, Global.tileSize);
         }
 
         int[] segmentStarts = {0, 6};
@@ -52,8 +51,8 @@ public class Oneal extends Enemy {
         targ.y *= Global.scaledSize;
     }
 
-    public static Oneal newOneal(int x, int y) {
-        return new Oneal(new TileMap.Pair (x, y));
+    public static OtherEnemy newOtherEnemy(int x, int y) {
+        return new OtherEnemy(new TileMap.Pair (x, y));
     } 
 
 
@@ -86,7 +85,7 @@ public class Oneal extends Enemy {
     protected TileMap.Pair pathing() {
         TileMap.Pair coord = new TileMap.Pair(targ.x / Global.scaledSize, targ.y / Global.scaledSize);
         if (mode == 0 && Global.distToBomber.map[coord.x][coord.y] < 4) {
-            if (hasBomb && Global.rnd.nextInt(2) == 0) {
+            if (hasBomb) {
                 Bomb.plantBomb((getX() + Global.scaledSize / 2) / Global.scaledSize * Global.scaledSize, (getY() + Global.scaledSize / 2) / Global.scaledSize * Global.scaledSize, 3, this);
                 hasBomb = false;
             }
@@ -100,6 +99,7 @@ public class Oneal extends Enemy {
             int dijkstra = Global.distToBomber.map[opt.x][opt.y];
             if (dijkstra == -1) continue;
             int score = Global.bombBlast.map[opt.x][opt.y] < 0 ? (-16 * Global.bombBlast.map[opt.x][opt.y]) : dijkstra;  
+            score += (int)Math.round(Global.rnd.nextGaussian() / 1.2);
             if (dijkstra == Integer.MAX_VALUE) {
                 score = Global.bombBlast.map[opt.x][opt.y] * -16;
             } else if (mode == 1) score = -score;
@@ -120,6 +120,7 @@ public class Oneal extends Enemy {
     @Override
     public void allowPlantingBomb() {
         hasBomb = true;
+        mode = 0;
     }
 
     public void die() {
@@ -129,3 +130,4 @@ public class Oneal extends Enemy {
         setCycleNo(0);
     }
 }
+
