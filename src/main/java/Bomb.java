@@ -1,22 +1,22 @@
-/*
-<<<<<<< HEAD
-//package main.java;
-
-public class Bomb extends Animation {
-||||||| 7460973
-public class Bomb extends Animation {
-=======
-import java.awt.image.BufferedImage;
->>>>>>> development
-*/
-
 import java.awt.image.*;
 public class Bomb extends Animation {
-    private float timer = 1.2f * 3.0f;
+    private float timer = 36.0f;
     private int radius = 4; 
     private BombPlanter bp;
 
+    private int[] extents = {0, 0, 0, 0};
+
     public Bomb(BufferedImage all, int x, int y) {
+        this(all, x, y, 4, null);
+    }
+
+    public Bomb(BufferedImage all, int x, int y, int radius) {
+        this(all, x, y, radius, null);
+    }
+
+    public Bomb(BufferedImage all, int x, int y, int radius, BombPlanter bp) {
+        this.radius = radius;
+        this.bp = bp;
         BufferedImage[] frames = new BufferedImage[3];
         float[] frameLengths = new float[3];
         for (int i = 0; i < frames.length; i++) {
@@ -36,30 +36,42 @@ public class Bomb extends Animation {
         assert(x % Global.scaledSize == 0 && y % Global.scaledSize == 0);
         setX(x);
         setY(y);
-    }
 
-    public Bomb(BufferedImage all, int x, int y, int radius) {
-        this(all, x, y);
-        this.radius = radius;
-    }
 
-    public Bomb(BufferedImage all, int x, int y, int radius, BombPlanter bp) {
-        this(all, x, y);
-        this.radius = radius;
-        this.bp = bp;
+        for (int i = 0; i < extents.length; i++) {
+            final int[] d = {0, -1, 0, 1};
+            extents[i] = radius;
+            for (int r = 0, x_ = x / Global.scaledSize, y_ = y / Global.scaledSize; 
+                    r < radius;
+                    r++, x_ += d[i], y_ += d[(i + 1) % d.length]) {
+                    Global.bombBlast.map[x_][y_] += -2 * (radius - r - 1);
+                    if (Global.tilemap.map[x_][y_] != 0) {
+                        extents[i] = r;
+                        break;
+                    }
+                }
+        }
+
+        /*
+        for (int i = 0; i < Global.bombBlast.map.length; i++) {
+            for (int j = 0; j < Global.bombBlast.map[i].length; j++) {
+                System.out.print(Global.bombBlast.map[i][j] + " ");
+            }
+            System.out.println();
+        }*/
+
     }
 
 
     public static Bomb plantBomb(int col, int row, int radus, BombPlanter bp) {
         Bomb bomb = new Bomb(Global.all, col, row, radus, bp);
-        Global.drawables.add(bomb);
-        Global.dynamics.add(bomb);
+        Global.addQueue.add(bomb);
         return bomb;
     }
 
     public Explosion explode() {
         Explosion ex = new Explosion(this);
-        bp.allowPlantingBomb();
+        if (bp != null) bp.allowPlantingBomb();
 
         Global.addQueue.add(ex);
         Global.deleteQueue.add(this);
@@ -73,11 +85,6 @@ public class Bomb extends Animation {
             explode();
     }
     
-    /**
-     * Get radius.
-     *
-     * @return radius as int.
-     */
     public int getRadius()
     {
         return radius;

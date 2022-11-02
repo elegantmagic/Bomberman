@@ -28,5 +28,4 @@ public class Spatial {
 	public void setY(int y) {
 		this.y = y;
 	}
-
 }

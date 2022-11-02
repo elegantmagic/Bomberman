@@ -25,4 +25,13 @@ public class Global {
     public static BufferedImage StartMenu;
     public static Queue<Object> addQueue = new ArrayDeque<Object>();
     public static Queue<Object> deleteQueue = new ArrayDeque<Object>();
+
+    public static SpaceSearch ss;
+    public static int nEnemy = 0;
+
+    public static LogicMap distToBomber;
+    public static LogicMap bombBlast;
+
+    public static boolean nextlev = false;
+    public static int level = 1;
 }

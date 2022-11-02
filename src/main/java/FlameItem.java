@@ -20,5 +20,7 @@ public class FlameItem extends Collectable {
         Global.bomber.addEffect(new FlameEffect());
         Collectable.collected(this);
     }
+
+    public boolean canBeCollected(Bomber b) { return true; }
 }
 

@@ -16,8 +16,13 @@ public class BombItem extends Collectable {
     }
 
     public void collect() {
-        Global.bomber.allowPlantingBomb();
+        Global.deleteQueue.add(this);
+        Global.bomber.extrabomb++;
         Collectable.collected(this);
+    }
+
+    public boolean canBeCollected(Bomber b) {
+        return true;
     }
 }
 

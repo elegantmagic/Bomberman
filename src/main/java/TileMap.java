@@ -7,10 +7,13 @@ import java.io.*;
 public class TileMap implements Drawable {
 	private BufferedImage[] tileset;
 	public int[][] map;
+    public int[][] collectableMap;
+    public int[][] enemyMap;
 	private int width;
     private int height;
 
     private int levelNum;
+    public int nbrick = 0;
 
     public TileMap(BufferedImage[] tileset, String level) throws IOException {
         BufferedReader levelReader = new BufferedReader(new FileReader(level));
@@ -22,16 +25,55 @@ public class TileMap implements Drawable {
         width = Integer.parseInt(rawMetadata[2]);
 
         map = new int[width][height];
+        collectableMap = new int[width][height];
+        enemyMap = new int[width][height];
         for (int row = 0; row < height; row++) {
             String r = levelReader.readLine();
             for (int col = 0; col < width; col++) {
+                collectableMap[col][row] = -1; // Nothing
+                enemyMap[col][row] = 0;
                 if(r.charAt(col) == '#') {
                     map[col][row] = 1;
                 } else if(r.charAt(col) == ' '){
                     map[col][row] = 0;
                 } else if(r.charAt(col) == '*') {
                     map[col][row] = 2;
+                    nbrick++;
+                } else if (r.charAt(col) == 'x') {
+                    map[col][row] = 2;
+                    nbrick++;
+                    collectableMap[col][row] = 0; // For portal
+                } else if (r.charAt(col) == 'b') {
+                    map[col][row] = 2;
+                    nbrick++;
+                    collectableMap[col][row] = 1; // For bombitem
+                } else if (r.charAt(col) == 'f') {
+                    map[col][row] = 2;
+                    nbrick++;
+                    collectableMap[col][row] = 2; // For flameitem
+                } else if (r.charAt(col) == 's') {
+                    map[col][row] = 2;
+                    nbrick++;
+                    collectableMap[col][row] = 3; // For speeditem
+                } else if (r.charAt(col) == 'p') {
+                    map[col][row] = 0;
+                    Global.bomber.setX(Global.scaledSize * col);
+                    Global.bomber.setY(Global.scaledSize * row);
+                } else if (r.charAt(col) == '1') {
+                    map[col][row] = 0;
+                    enemyMap[col][row] = 1;
+                } else if (r.charAt(col) == '2') {
+                    map[col][row] = 0;
+                    enemyMap[col][row] = 2;
+                } else if (r.charAt(col) == '3') {
+                    map[col][row] = 0;
+                    enemyMap[col][row] = 3;
+                } else if (r.charAt(col) == '4') {
+                    map[col][row] = 0;
+                    enemyMap[col][row] = 4;
                 }
+
+
             }
         }
 
@@ -48,6 +90,16 @@ public class TileMap implements Drawable {
 		this.map = new int[width][height];
 
 	}
+
+    public Pair randomFreeSpace() {
+        int x = Global.rnd.nextInt(0, width);
+        int y = Global.rnd.nextInt(0, height);
+        while (map[x][y] != 0) {
+            x = Global.rnd.nextInt(0, width);
+            y = Global.rnd.nextInt(0, height);        
+        }
+        return new Pair(x, y);
+    }
 
 	public void setMap(int x, int y, int index) {
 		map[x][y] = index;
@@ -165,6 +217,22 @@ public class TileMap implements Drawable {
             }
         }
 	}
+
+    public void spawnEnemy() {
+        for (int col = 0; col < width; col++) {
+            for (int row = 0; row < height; row++) {
+                if (enemyMap[col][row] == 1) {
+                    Global.addQueue.add(Balloom.newBalloom(col * Global.scaledSize, row * Global.scaledSize));
+                } else if (enemyMap[col][row] == 2) {
+                    Global.addQueue.add(Oneal.newOneal(col * Global.scaledSize, row * Global.scaledSize));
+                } else if (enemyMap[col][row] == 3) {
+                    Global.addQueue.add(OtherEnemy.newOtherEnemy(col * Global.scaledSize, row * Global.scaledSize));
+                } else if (enemyMap[col][row] == 4) {
+                    Global.addQueue.add(MoreEnemy.newMoreEnemy(col * Global.scaledSize, row * Global.scaledSize));
+                }
+            }
+        }
+    }
     
     /**
      * Get levelNum.
