@@ -17,6 +17,8 @@ public class Oneal extends Enemy {
     // 1 : fleeing bomber
     private boolean dying = false;
 
+    private final float speeds[] = {0.36f, 0.82f};
+
     public Oneal(TileMap.Pair initial) {
         Global.nEnemy++;
 
@@ -72,7 +74,7 @@ public class Oneal extends Enemy {
         Oneal.untilNextRefresh -= delta;
         
 
-        if (Global.bomber.isAlive) t += delta * 0.2f;
+        if (Global.bomber.isAlive) t += delta * speeds[mode];
         if (t > 1.0f) {
             t = 0.0f;
             pathing();
