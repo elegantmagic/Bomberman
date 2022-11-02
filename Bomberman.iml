@@ -11,5 +11,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jlayer-1.0.1" level="application" />
     <orderEntry type="library" name="jlayer-1.0.1 (2)" level="application" />
+    <orderEntry type="library" name="Maven: something.idk.whatever:i.hate.java:1.0.1" level="project" />
   </component>
 </module>
