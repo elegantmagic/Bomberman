@@ -15,6 +15,7 @@ public class OtherEnemy extends Enemy {
     // 0 : targeting bomber
     // 1 : fleeing bomber
     private boolean dying = false;
+    private float speed = 0.23f;
 
     public OtherEnemy(TileMap.Pair initial) {
         Global.nEnemy++;
@@ -49,6 +50,9 @@ public class OtherEnemy extends Enemy {
         targ = coord;
         targ.x *= Global.scaledSize;
         targ.y *= Global.scaledSize;
+
+        speed += Global.rnd.nextGaussian(0.0, 0.1);
+        
     }
 
     public static OtherEnemy newOtherEnemy(int x, int y) {
@@ -71,7 +75,7 @@ public class OtherEnemy extends Enemy {
         Oneal.untilNextRefresh -= delta;
         
 
-        if (Global.bomber.isAlive) t += delta * 0.2f;
+        if (Global.bomber.isAlive) t += delta * speed;
         if (t > 1.0f) {
             t = 0.0f;
             pathing();

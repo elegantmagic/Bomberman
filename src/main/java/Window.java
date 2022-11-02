@@ -2,6 +2,7 @@
 
 import javazoom.jl.player.Player;
 import javazoom.jl.player.advanced.AdvancedPlayer;
+import java.awt.event.*;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -51,6 +52,7 @@ public class Window extends JPanel implements Runnable {
     private void prepareGUI() {
 
     }
+    /*
     class CustomMouseListener implements MouseListener {
         public void mouseClicked(MouseEvent e) {
             if(758 <= e.getX() && e.getX() < 927 && 495 < e.getY() && e.getY() < 527) {
@@ -70,6 +72,21 @@ public class Window extends JPanel implements Runnable {
         public void mouseExited(MouseEvent e) {
         }
     }
+    */
+
+    class CustomKeyListener implements KeyListener {
+        public void keyReleased(KeyEvent e) {
+
+        }
+
+        public void keyTyped(KeyEvent e) {
+
+        }
+
+        public void keyPressed(KeyEvent e) {
+            startScreen = true;
+        }
+    }
     public static void main(String[] args) {
         frame = new JFrame("Bomberman");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,7 +102,7 @@ public class Window extends JPanel implements Runnable {
             public void run() {
                 try {
                     do {
-                        FileInputStream file = new FileInputStream("C:\\Users\\Admin\\Documents\\GitHub\\Bomberman\\music.mp3");
+                        FileInputStream file = new FileInputStream("music.mp3");
                         AdvancedPlayer play = new AdvancedPlayer(file);
                         play.play();
                     } while (true);
@@ -123,7 +140,7 @@ public class Window extends JPanel implements Runnable {
             Global.bomber = bomber;
 
             frame.addKeyListener(bomber);
-            frame.addMouseListener(new CustomMouseListener());
+            frame.addKeyListener(new CustomKeyListener());
             BufferedImage tileset[] = {
                     all.getSubimage(0, 4 * 16, 16, 16),
                     all.getSubimage(3 * 16, 3 * 16, 16, 16),
@@ -172,10 +189,10 @@ public class Window extends JPanel implements Runnable {
     public void draw() {
         Graphics2D graphics2D = (Graphics2D) image.getGraphics();
         graphics2D.setColor(new Color(56, 133, 0));
-        graphics2D.fillRect(0, 0, 31 * 16 * 3, 13 * 16 * 3);
+        graphics2D.fillRect(0, 0, tilemap.getWidth() * Global.scaledSize, tilemap.getHeight() * Global.scaledSize);
 
         if(!startScreen) {
-            graphics2D.drawImage(StartMenu, 0, 0, 31 * 16 * 3, 13 * 16 * 3, null);
+            graphics2D.drawImage(StartMenu, 0, 0, tilemap.getWidth() * Global.scaledSize, tilemap.getHeight() * Global.scaledSize, null);
         } else {
             tilemap.draw();
             bomber.draw();
@@ -190,6 +207,7 @@ public class Window extends JPanel implements Runnable {
     }
 
     public void update() {
+        if (!startScreen) return;
         while (!Global.addQueue.isEmpty()) {
             Object o = Global.addQueue.poll();
             if (o instanceof Drawable)
@@ -209,10 +227,10 @@ public class Window extends JPanel implements Runnable {
                 SpaceSearch.remove((Spatial)o);
             }
         }
-        bomber.update(0.2f);
+        bomber.update(0.18f);
         Global.distToBomber.update();
         for (Dynamic d : Global.dynamics) {
-            d.update(0.2f);
+            d.update(0.18f);
         }
         Global.distToBomber.update();
         

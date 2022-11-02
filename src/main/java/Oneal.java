@@ -15,9 +15,12 @@ public class Oneal extends Enemy {
     private int mode = 0; 
     // 0 : targeting bomber
     // 1 : fleeing bomber
+    // 2 : relaxed
+    private static final float relaxTime = 6.0f;
+    private float relaxTimer = relaxTime;
     private boolean dying = false;
 
-    private final float speeds[] = {0.36f, 0.82f};
+    private final float speeds[] = {0.36f, 0.40f, 0.28f};
 
     public Oneal(TileMap.Pair initial) {
         Global.nEnemy++;
@@ -52,6 +55,9 @@ public class Oneal extends Enemy {
         targ = coord;
         targ.x *= Global.scaledSize;
         targ.y *= Global.scaledSize;
+
+        for (int i = 0; i < speeds.length; i++)
+            speeds[i] += Global.rnd.nextGaussian(0.0, 0.06);
     }
 
     public static Oneal newOneal(int x, int y) {
@@ -62,6 +68,7 @@ public class Oneal extends Enemy {
 
     public void update(float delta) {
         super.update(delta);
+        relaxTimer -= delta;
         SpaceSearch.remove(this);
         if (dying) {
             if (getCycleNo() > 0) {
@@ -93,14 +100,21 @@ public class Oneal extends Enemy {
                 hasBomb = false;
             }
             mode = 1;
-        } else if (mode == 1 && Global.distToBomber.map[coord.x][coord.y] > 8) {
-            mode = 0;
+        } else if (mode == 1 && Global.distToBomber.map[coord.x][coord.y] > 10) {
+            mode = 2;
+            relaxTimer = relaxTime;
+        } else if (mode == 2) {
+            if (relaxTimer < 0.0f) {
+                mode = 0;
+                relaxTimer = relaxTime;
+            }
         }
         TileMap.Pair options[] = {new TileMap.Pair(coord.x + 1, coord.y), new TileMap.Pair(coord.x - 1, coord.y), new TileMap.Pair(coord.x, coord.y - 1), new TileMap.Pair(coord.x, coord.y + 1)};
         int optimal = Integer.MAX_VALUE;
         for (TileMap.Pair opt : options) {
             int dijkstra = Global.distToBomber.map[opt.x][opt.y];
             if (dijkstra == -1) continue;
+            if (mode == 2) dijkstra = 0;
             int score = Global.bombBlast.map[opt.x][opt.y] < 0 ? (-16 * Global.bombBlast.map[opt.x][opt.y]) : dijkstra;  
             if (dijkstra == Integer.MAX_VALUE) {
                 score = Global.bombBlast.map[opt.x][opt.y] * -16;

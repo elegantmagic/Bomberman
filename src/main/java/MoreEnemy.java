@@ -14,6 +14,7 @@ public class MoreEnemy extends Enemy {
     // 0 : targeting bomber
     // 1 : fleeing bomber
     private boolean dying = false;
+    private float speed = 0.13f;
 
     public MoreEnemy(TileMap.Pair initial) {
         Global.nEnemy++;
@@ -48,6 +49,8 @@ public class MoreEnemy extends Enemy {
         targ = coord;
         targ.x *= Global.scaledSize;
         targ.y *= Global.scaledSize;
+
+        speed += Global.rnd.nextGaussian(0.0, 0.1);
     }
 
     public static MoreEnemy newMoreEnemy(int x, int y) {
@@ -70,7 +73,7 @@ public class MoreEnemy extends Enemy {
         Oneal.untilNextRefresh -= delta;
         
 
-        if (Global.bomber.isAlive) t += delta * 0.2f;
+        if (Global.bomber.isAlive) t += delta * speed;
         if (t > 1.0f) {
             t = 0.0f;
             pathing();
