@@ -98,7 +98,7 @@ public class MoreEnemy extends Enemy {
             int dijkstra = Global.distToBomber.map[opt.x][opt.y];
             if (dijkstra == -1) continue;
             int score = Global.bombBlast.map[opt.x][opt.y] < 0 ? (-16 * Global.bombBlast.map[opt.x][opt.y]) : dijkstra;  
-            score += (int)Math.round(Global.rnd.nextGaussian() / 1.2);
+            score += (int)Math.round(Global.rnd.nextGaussian() / 0.8);
             if (dijkstra == Integer.MAX_VALUE) {
                 score = Global.bombBlast.map[opt.x][opt.y] * -16;
             } else if (mode == 1) score = -score;
