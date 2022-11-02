@@ -22,6 +22,7 @@ public class Global {
 
     public static BufferedImage all;
 
+    public static BufferedImage StartMenu;
     public static Queue<Object> addQueue = new ArrayDeque<Object>();
     public static Queue<Object> deleteQueue = new ArrayDeque<Object>();
 
