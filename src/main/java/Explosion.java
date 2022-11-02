@@ -18,6 +18,8 @@ public class Explosion extends Spatial implements Drawable, Dynamic {
 
 
     public Explosion(Bomb bomb) {
+        System.out.println(Global.nEnemy);
+
         this.blastRadius = bomb.getRadius();
         if (center == null) {
             center = new BufferedImage[4];
@@ -45,7 +47,7 @@ public class Explosion extends Spatial implements Drawable, Dynamic {
 
         for (int i = 0; i < extents.length; i++) {
             final int[] d = {0, -1, 0, 1};
-            extents[i] = blastRadius;
+            extents[i] = blastRadius - 1;
             for (int r = 0, x_ = x, y_ = y; 
                     r < blastRadius;
                     r++, x_ += d[i], y_ += d[(i + 1) % d.length]) {

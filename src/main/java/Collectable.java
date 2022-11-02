@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Queue;
+import java.util.ArrayDeque;
 
 public abstract class Collectable implements Drawable {
     public static Collectable[][] maps;
@@ -9,6 +11,7 @@ public abstract class Collectable implements Drawable {
     public static void setTilemap(TileMap tm) {
         Collectable.maps = new Collectable[tm.getWidth()][tm.getHeight()];
     }
+
 
     public Collectable(int row, int col) {
         Collectable.maps[col][row] = this;
@@ -44,36 +47,5 @@ public abstract class Collectable implements Drawable {
                 return null;
 
         }
-        /*
-        if (Portal.exist) {
-            Global.tilemap.nbrick--;
-            switch (Global.rnd.nextInt(3)) {
-                case 0:
-                    return new FlameItem(row, col);
-                case 1:
-                    return new SpeedItem(row, col);
-                case 2:
-                    return new BombItem(row, col);
-                default:
-                    return null;
-            }
-        } else {
-            if (Global.rnd.nextInt(Global.tilemap.nbrick) == 0) {
-                Global.tilemap.nbrick--;
-                return new Portal(row, col);
-            }
-            Global.tilemap.nbrick--;
-            switch (Global.rnd.nextInt(3)) {
-                case 0:
-                    return new FlameItem(row, col);
-                case 1:
-                    return new SpeedItem(row, col);
-                case 2:
-                    return new BombItem(row, col);
-                default:
-                    return null;
-            }
-            
-        }*/
     }
 };

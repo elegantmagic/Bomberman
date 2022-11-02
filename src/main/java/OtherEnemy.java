@@ -88,7 +88,7 @@ public class OtherEnemy extends Enemy {
 
     protected TileMap.Pair pathing() {
         TileMap.Pair coord = new TileMap.Pair(targ.x / Global.scaledSize, targ.y / Global.scaledSize);
-        if (mode == 0 && Global.distToBomber.map[coord.x][coord.y] < 4) {
+        if (mode == 0 && Global.distToBomber.map[coord.x][coord.y] < 2) {
             if (hasBomb) {
                 Bomb.plantBomb((getX() + Global.scaledSize / 2) / Global.scaledSize * Global.scaledSize, (getY() + Global.scaledSize / 2) / Global.scaledSize * Global.scaledSize, 3, this);
                 hasBomb = false;
@@ -131,6 +131,7 @@ public class OtherEnemy extends Enemy {
         if (dying) return;
         dying = true;
         setSegment(1);
+        resetCycle();
         setCycleNo(0);
     }
 }

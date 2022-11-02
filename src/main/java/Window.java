@@ -22,6 +22,8 @@ import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import java.util.ArrayList;
 public class Window extends JPanel implements Runnable {
     boolean isRunning;
     Thread thread;
@@ -222,7 +224,7 @@ public class Window extends JPanel implements Runnable {
                 Global.drawables.remove(o);
             if (o instanceof Dynamic)
                 Global.dynamics.remove(o);
-            if (o instanceof Oneal || o instanceof Balloom) {
+            if (o instanceof Oneal || o instanceof Balloom || o instanceof MoreEnemy || o instanceof OtherEnemy) {
                 Global.nEnemy--;
                 SpaceSearch.remove((Spatial)o);
             }
@@ -240,10 +242,12 @@ public class Window extends JPanel implements Runnable {
             try {
                 String nextlevfilename = String.format("Level%d.txt", Global.level);
                 tilemap = new TileMap(tileset, nextlevfilename);
+                Global.tilemap = tilemap;
+                Global.drawables = new ArrayList<Drawable>(64);
+                Global.dynamics = new ArrayList<Dynamic>(64);
                 SpaceSearch.reset(); 
-                TileMap.Pair bp = tilemap.randomFreeSpace();
-                bomber.setX(bp.x * Global.scaledSize);
-                bomber.setY(bp.y * Global.scaledSize);
+
+                Global.tilemap.spawnEnemy();
             } catch (Exception e) {
                 isRunning = false;
                 System.out.println("CONGRAT, YOU'VE WON!");

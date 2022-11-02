@@ -130,6 +130,7 @@ class Balloom extends Enemy {
         if (dying) return;
         dying = true;
         setSegment(1);
+        resetCycle();
         setCycleNo(0);
     }
 }
